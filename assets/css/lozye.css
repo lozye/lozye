@@ -282,7 +282,7 @@
 body {
     background-color: #fff;
     padding: 50px;
-    font: 14px/1.5 Consolas,'Microsoft YaHei';
+    font: 14px/1.5 Helvetica,Consolas,'Microsoft YaHei';
     color: #727272;
     font-weight: 400
 }
