@@ -1,7 +1,7 @@
-## Welcome to GitHub Pages
+## MARK
 
-
+#### CENTOS
 + [centos shadowsocks install](https://github.com/lozye/lozye.github.io/blob/master/shadowsocks-libev.sh)
 
-
-+ [test](/test.html)
+#### POSTGRESQL
++ [DATETIME FUNCTIONS](https://www.postgresql.org/docs/9.3/functions-datetime.html)
