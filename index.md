@@ -1,27 +1,26 @@
-# 
 
-### SERVER
+#### SERVER
 
-#### CentOS
+** CentOS **
 + [centos shadowsocks install](https://github.com/lozye/lozye.github.io/blob/master/doc/centosshadowsockslibev.sh)
 
 
 ---
 ### DATABASE
 
-#### PostgreSQL
+** PostgreSQL **
 + [datetime functions](https://www.postgresql.org/docs/9.3/functions-datetime.html)
 
-#### SqlServer
+** SqlServer **
 + [datetime convert](doc/sqlserverconvert)
 
 
 ---
-### LANG
+#### LANG
 
-#### JavaScript
+** JavaScript **
 + [addEventListener](doc/jsevent)
 
-#### Cshape
+** C# **
 + ...
 ---
