@@ -1,0 +1,87 @@
+body, html, input {
+    font-family: Helvetica, Consolas,'Microsoft YaHei';
+}
+/*-- wrapper --*/
+.x-wrapper {
+    /*保证footer是相对于container位置绝对定位*/
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    /*设置padding-bottom值大于等于footer的height值，以保证main的内容能够全部显示出来而不被footer遮盖；*/
+    padding-bottom: 200px;
+    box-sizing: border-box;
+}
+
+.x-header {
+    width: 100%;
+    min-height: 50px;
+    background-color: #099;
+    color: #FFF;
+    /*-- non_select --*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.x-body {
+    width: 100%;
+    min-height: 500px;
+}
+
+.x-footer {
+    padding: 10px 0;
+    min-height: 120px;
+    background-color: #2C3E50;
+    color: #fff;
+    font-size: 12px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    /*-- non_select --*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/*-- wrapper-end --*/
+
+.x-title {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 150%;
+    line-height: 50px;
+}
+
+.x-nav li:hover {
+    border-bottom: 5px #fff solid;
+    background-color: #1ABC9C;
+}
+
+.x-nav li {
+    display: inline-block;
+    padding-bottom: 5px;
+    width: 30%;
+    height: 40px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.x-nav a {
+    font-size: 14px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-decoration: none;
+}
+
+.x-nav {
+    height: 35px;
+    width: 100%;
+}
