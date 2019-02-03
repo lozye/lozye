@@ -14,8 +14,8 @@
 <body>
     <div class="x-wrapper">
         <div class="x-header">
-            <div class="grid-container">
-                <div class="grid-40 mobile-grid-40"><p class="x-title">{{ site.title | default: site.github.repository_name }}</p></div>
+            <div class="grid-container">                
+                <div class="grid-40 mobile-grid-40"><a href="{{ "/" | absolute_url }}" class="x-title">{{ site.title | default: site.github.repository_name }}</a></div>
                 <div class="prefix-30 grid-30 mobile-grid-60 grid-container">
                     <nav class="x-nav">
                         <ul>
