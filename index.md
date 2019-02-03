@@ -14,7 +14,7 @@
 
 
 
-## LANG
+## LANGUAGE
 #### JavaScript
 + [addEventListener](doc/jsevent)
 
