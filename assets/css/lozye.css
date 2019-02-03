@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, 'Microsoft YaHei';
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, 'Microsoft YaHei';
     color: #606c71;
 }
 
@@ -65,12 +65,23 @@ a {
 }
 /*-- wrapper-end --*/
 
+.x-title:hover {
+    text-decoration: none;
+}
+
+.x-title b {
+    font-size: 180%;    
+    line-height: 50px;
+}
+
+.x-title span {
+    font-size: 80%;
+    margin-left: 10px;
+}
+
 .x-title {
     color: #fff;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 150%;
-    line-height: 50px;
 }
 
 .x-nav li:hover {
@@ -88,7 +99,10 @@ a {
 }
 
 .x-nav a {
-    font-size: 14px;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: bold;
+    letter-spacing: 1px;
     position: relative;
     display: inline-block;
     width: 100%;
