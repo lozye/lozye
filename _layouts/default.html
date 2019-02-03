@@ -7,6 +7,8 @@
     {% seo %}
     <link href="{{ "/assets/css/unsemantic.min.css?v=" | append: site.github.build_revision | relative_url }}" rel="stylesheet" />
     <link href="{{ "/assets/css/lozye.css?v=" | append: site.github.build_revision | relative_url }}" rel="stylesheet" />
+    <link href="/assets/css/unsemantic.min.css" rel="stylesheet" />
+    <link href="/assets/css/lozye.css" rel="stylesheet" />
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -14,13 +16,18 @@
 <body>
     <div class="x-wrapper">
         <div class="x-header">
-            <div class="grid-container">                
-                <div class="grid-40 mobile-grid-40"><a href="{{ "/" | absolute_url }}" class="x-title">{{ site.title | default: site.github.repository_name }}</a></div>
+            <div class="grid-container">
+                <div class="grid-40 mobile-grid-40">
+                    <a href="{{ "/" | absolute_url }}" class="x-title">
+                        <b>{{ site.title | default: site.github.repository_name }}</b>
+                        <span>{{ site.description | default: site.github.project_tagline }}</span>
+                    </a>
+                </div>
                 <div class="prefix-30 grid-30 mobile-grid-60 grid-container">
                     <nav class="x-nav">
                         <ul>
                             <li><a href="{{ site.github.repository_url }}">PROJECT</a></li>
-                            <li><a href="{{ site.github.owner_url }}">PROFILE</a></li>
+                            <li><a href="{{ site.github.owner_url }}">USERPAGE</a></li>
                         </ul>
                     </nav>
                 </div>
