@@ -2,6 +2,7 @@
 ## SERVER
 #### CentOS
 + [centos shadowsocks install](https://github.com/lozye/lozye.github.io/blob/master/doc/centosshadowsockslibev.sh)
++ [centos HAProxy install](https://github.com/lozye/lozye.github.io/blob/master/doc/shadowsocksrelay.sh)
 
 
 
