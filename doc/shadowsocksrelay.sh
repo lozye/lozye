@@ -1,37 +1,21 @@
-If you want your client connected to a Japan VPS, but you want a US IP.
+# 使用 HAProxy 加速 Shadowsocks
 
-Client <--> Japan VPS <--> US VPS
-Easy version:
-Setup Shadowsocks server as usual on US VPS.
+# 简单介绍下 HAProxy，HAProxy 是一个高效的负载均衡软件，可以实现 TCP/HTTP 的代理。这里使用它将我们发给它的请求转发给 ss 服务器。
+yum install haproxy nano -y
 
-On Japan VPS, enable forwarding. Replace US_VPS_IP and JAPAN_VPS_IP with actual IP:
 
- sudo su
- echo 1 > /proc/sys/net/ipv4/ip_forward
- iptables -t nat -A PREROUTING -p tcp --dport 8388 -j DNAT --to-destination US_VPS_IP:8388
- iptables -t nat -A POSTROUTING -p tcp -d US_VPS_IP --dport 8388 -j SNAT --to-source JAPAN_VPS_IP
-Set your server to JAPAN_VPS_IP:8388 on your client.
+# 编辑配置
+touch /etc/haproxy/haproxy.cfg
+nano /etc/haproxy/haproxy.cfg
 
-Better version:
-For those who want more control and better performance, use haproxy instead. You can also enable load balance by adding multiple servers.
-
-For Debian 7.0:
-
-On Japan VPS. Append the following line to /etc/apt/sources.list
-
-deb http://ftp.us.debian.org/debian/ wheezy-backports main
-Run
-
-apt-get install haproxy
-Edit /etc/haproxy/haproxy.cfg
-
+# 配置
 global
         ulimit-n  51200
 
 defaults
-        log	global
-        mode	tcp
-        option	dontlognull
+        log global
+        mode    tcp
+        option  dontlognull
         contimeout 1000
         clitimeout 150000
         srvtimeout 150000
@@ -41,7 +25,22 @@ frontend ss-in
         default_backend ss-out
 
 backend ss-out
-        server server1 US_VPS_IP:8388 maxconn 20480
-        
-        
-Then run haproxy -f /etc/haproxy/haproxy.cfg
+        server server1 222.222.222.222:2222 maxconn 20480
+
+# 其中，*:8388 中的 8388 是中继服务器接受请求的端口，222.222.222.222:2222 是 ss 服务器的 IP 地址加端口号。
+
+# run application on startup
+systemctl enable haproxy
+systemctl start haproxy
+systemctl status haproxy
+chkconfig haproxy on
+
+# configure firewall (if needed)
+firewall-cmd --zone=public --add-port=8388/tcp --permanent
+firewall-cmd --zone=public --add-port=8388/udp --permanent
+firewall-cmd --reload
+
+
+
+
+
