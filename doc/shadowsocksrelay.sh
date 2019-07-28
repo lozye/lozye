@@ -5,7 +5,7 @@ yum install haproxy nano -y
 
 
 # 编辑配置
-touch /etc/haproxy/haproxy.cfg
+rm /etc/haproxy/haproxy.cfg -f
 nano /etc/haproxy/haproxy.cfg
 
 # 配置
