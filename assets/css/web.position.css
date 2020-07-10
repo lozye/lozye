@@ -1,0 +1,44 @@
+.x-wapper{
+    background-color: #eee;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 200px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 720px) {
+    .x-site {
+        width: 400px;
+        height: 100%;
+        position: fixed;
+        background-color: #fff;      
+    }   
+    .x-main{
+        float:right;
+        width:100%;
+    }
+    .x-container,
+    .x-footer {
+        margin-left: 400px;
+        padding: 0 20px;      
+    }  
+}
+
+@media (max-width: 720px) {
+    .x-site {
+        height: 200px; 
+        background-color: #eee;                  
+    }    
+    .x-container,
+    .x-footer {              
+        padding: 0 20px;     
+    }     
+}
+
+.x-footer {
+    min-height: 120px;           
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
