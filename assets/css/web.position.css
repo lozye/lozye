@@ -8,7 +8,7 @@
 
 @media (min-width: 720px) {
     .x-site {
-        width: 400px;
+        width: 300px;
         height: 100%;
         position: fixed;
         background-color: #fff;      
@@ -19,7 +19,7 @@
     }
     .x-container,
     .x-footer {
-        margin-left: 400px;
+        margin-left: 300px;
         padding: 0 20px;      
     }  
 }

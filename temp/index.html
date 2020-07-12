@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -20,12 +20,40 @@
             min-height: 50px;
             box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
         }
-        .x-box-title{
+
+        .x-box-title {
             float: left;
         }
-        .x-box-date{
+
+        .x-box-date {
             float: right;
-          
+        }
+
+        .x-site-top {
+            position: absolute;
+            width: 100%;
+            background-color: #4d4d4d;
+            height: 180px;
+        }
+
+        .x-site-mid {
+            position: relative;
+            top: 110px;
+            border: 5px solid #fff;
+            border-radius: 300px;
+            width: 128px;
+            height: 128px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #88acdb;
+            text-align: center;
+        }
+
+        .x-site-footer {
+            position: relative;
+            top: 150px;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -33,7 +61,20 @@
 <body>
     <div class="x-wapper">
         <div class="x-site">
-            x-site
+            <div class="x-site-top"></div>
+            <div class="x-site-mid"></div>
+            <div class="x-site-footer">
+                Lozye
+
+
+                <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+                    <circle cx="50" cy="50" r="50" stroke="black" stroke-width="1" >
+                        <line x1="0" y1="0" x2="300" y2="300" style="stroke:rgb(99,99,99); stroke-width:2" />
+                    </circle>
+                </svg>
+
+            </div>
         </div>
         <div class="x-main">
             <div class="x-container">
@@ -43,7 +84,7 @@
                         <div class="x-box-date grid-box">2020-07-10</div>
                     </div>
                     <div class="grid-box">
-                    
+
                     </div>
                 </div>
                 <div class="x-box grid-box">
