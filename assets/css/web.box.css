@@ -1,0 +1,31 @@
+.x-box {
+    background-color: #fff;
+    margin-top: 10px;
+    min-height: 50px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.x-box-header {
+    min-height: 60px;
+    border-left: 5px solid #4d4d4d;
+    padding: 0 5%
+}
+
+.x-box-markdown {
+    padding: 20px 5%;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.x-box-title {
+    float: left;
+    font-size: 20px;
+    line-height: 60px;
+    letter-spacing: 1px;
+}
+
+.x-box-date {
+    float: right;
+    font-size: 12px;
+    line-height: 60px;
+}
