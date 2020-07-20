@@ -14,6 +14,8 @@
         rel="stylesheet" />
     <link href="{{ "/assets/css/web.box.css?v=" | append: site.github.build_revision | relative_url }}"
         rel="stylesheet" />
+    <link href="{{ "/assets/css/web.markdown.css?v=" | append: site.github.build_revision | relative_url }}"
+    rel="stylesheet" />
 
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -39,7 +41,7 @@
                         <div class="x-box-title grid-box">{{ page.title }}</div>
                         <div class="x-box-date grid-box">{{ page.date |  date: "%Y-%m-%d" }}</div>
                     </div>
-                    <div class="grid-box x-box-markdown"> {{ content }} </div>
+                    <div class="grid-box x-box-markdown markdown-body"> {{ content }} </div>
                     <div class="grid-box x-box-footer">
                         <div class="x-box-line">
                             <a href="/index.html">Back</a>
