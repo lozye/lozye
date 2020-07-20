@@ -37,7 +37,7 @@
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
                         <div class="x-box-title grid-box">{{ page.title }}</div>
-                        <div class="x-box-date grid-box">{{ page.date | "YYYY-MM-DD" }}</div>
+                        <div class="x-box-date grid-box">{{ page.date |  date: "%Y-%m-%d" }}</div>
                     </div>
                     <div class="grid-box x-box-markdown"> {{ content }} </div>
                     <div class="grid-box x-box-footer">
