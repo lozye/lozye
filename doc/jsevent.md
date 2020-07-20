@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 ## EventTarget.addEventListener()
 
 + [RAW](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
