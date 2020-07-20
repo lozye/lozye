@@ -40,9 +40,9 @@
                         <div class="x-box-title grid-box">{{ page.title }}</div>
                         <div class="x-box-date grid-box">{{ page.date }}</div>
                     </div>
-                    <div class="grid-box x-box-markdown"> {{ content }} </div>                 
+                    <div class="grid-box x-box-markdown"> {{ content }} </div>
                 </div>
-
+                <!-- show index -->
                 {% for post in site.posts %}
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
@@ -71,7 +71,8 @@
         <div class="x-hidden"></div>
     </div>
     <script text="text/html">
-     {{ site.posts.length }}
-    </script>
+     {{ site.posts.length
+                }}
+                </script>
 </body>
 </html>
