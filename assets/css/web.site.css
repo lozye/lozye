@@ -29,7 +29,6 @@
 .x-site-title {
   font-family: Consolas;
   font-size: 130%;
-  color: #4d4d4d;
 }
 
 .x-site-slogan {
@@ -37,10 +36,10 @@
   color: #4d4d4d;
   font-size: 80%;
 }
-.x-site-slogan a{
-  text-decoration: none;
-  color: #4d4d4d;  
-}
+	.x-site-slogan a, .x-site-title a{
+		text-decoration: none;
+		color: #4d4d4d;
+	}
 
 .x-footer-msg ul {
   display: inline-block;
