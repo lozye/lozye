@@ -8,7 +8,8 @@ tags: js
 
 [源](https://github.com/lozye/lozye.github.io/blob/master/opensource/selectJS.js)
 
-### 怎么使用-多级联动
+
+### 怎么使用
 
 ```html
 <p>多级联动</p>
