@@ -6,17 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     {% seo %}
-    <link href="{{ "/assets/css/unsemantic.min.css?v=" | append: site.github.build_revision | relative_url }}"
+    <link href="{{ "/assets/css/web.all.css?v=" | append: site.github.build_revision | relative_url }}"
         rel="stylesheet" />
-    <link href="{{ "/assets/css/web.position.css?v=" | append: site.github.build_revision | relative_url }}"
-        rel="stylesheet" />
-    <link href="{{ "/assets/css/web.site.css?v=" | append: site.github.build_revision | relative_url }}"
-        rel="stylesheet" />
-    <link href="{{ "/assets/css/web.box.css?v=" | append: site.github.build_revision | relative_url }}"
-        rel="stylesheet" />
-    <link href="{{ "/assets/css/web.markdown.css?v=" | append: site.github.build_revision | relative_url }}"
-    rel="stylesheet" />
-
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -39,7 +30,7 @@
 
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
-                        <div class="x-box-title grid-box">{{ page.title }}</div>                        
+                        <div class="x-box-title grid-box">{{ page.title }}</div>
                     </div>
                     <div class="grid-box x-box-markdown markdown-body"> {{ content }} </div>
                 </div>
@@ -53,7 +44,7 @@
                     <div class="grid-box x-box-markdown markdown-body"> {{ post.excerpt }} </div>
                     <div class="grid-box x-box-footer">
                         <div class="x-box-line">
-                            <a href="{{ post.url }}">More</a>
+                            <a href="{{ post.url }}">MORE</a>
                         </div>
                     </div>
                 </div>
@@ -72,8 +63,12 @@
         <div class="x-hidden"></div>
     </div>
     <script text="text/html">
-     {{ site.posts.length
-                }}
-                </script>
+        {
+            {
+                site.posts.length
+            }
+        }
+    </script>
 </body>
+
 </html>
