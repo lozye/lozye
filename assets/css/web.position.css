@@ -1,5 +1,6 @@
 .x-wapper {
   background-color: #eee;
+  min-height: 100%;
 }
 
 .x-main {
