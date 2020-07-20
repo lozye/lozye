@@ -27,10 +27,9 @@
             <div class="x-site-top"></div>
             <div class="x-site-mid"></div>
             <div class="x-site-footer">
-                <p class="x-site-title">{{ site.title | default: site.github.repository_name }}</p>
+                <p class="x-site-title">{{ site.title }}</p>
                 <p class="x-site-slogan"><a target="_blank"
-                        href="{{ site.github.owner_url }}">{{ site.description | default: site.github.project_tagline }}</a>
-                </p>
+                        href="{{ site.github.owner_url }}">{{ site.description }}</a> </p>
             </div>
         </div>
         <div class="x-main">
