@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Command
+title:  Marks
 ---
 
 #### CentOS.sh
