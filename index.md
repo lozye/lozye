@@ -1,24 +1,3 @@
-
-## SERVER
-#### CentOS
-+ [centos shadowsocks install](https://github.com/lozye/lozye.github.io/blob/master/doc/centosshadowsockslibev.sh)
-+ [centos HAProxy install](https://github.com/lozye/lozye.github.io/blob/master/doc/shadowsocksrelay.sh)
-
-
-
-## DATABASE
-#### PostgreSQL
-+ [datetime functions](https://www.postgresql.org/docs/9.3/functions-datetime.html)
-
-#### SqlServer
-+ [datetime convert](doc/sqlserverconvert)
-
-
-
-## LANGUAGE
-#### JavaScript
-+ [addEventListener](doc/jsevent)
-
-#### C#
-+ ...
-
+---
+layout: default
+---
