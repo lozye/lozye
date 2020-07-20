@@ -37,6 +37,10 @@
   color: #4d4d4d;
   font-size: 80%;
 }
+.x-site-slogan a{
+  text-decoration: none;
+  color: #4d4d4d;  
+}
 
 .x-footer-msg ul {
   display: inline-block;

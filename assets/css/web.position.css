@@ -7,7 +7,11 @@
   min-height: 100%;
   box-sizing: border-box;
   padding-bottom: 200px;
+  z-index: 1;
 }
+ .x-site {
+   z-index: 2;
+ }
 
 .x-footer {
   min-height: 60px;

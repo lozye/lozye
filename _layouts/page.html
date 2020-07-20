@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -35,20 +35,18 @@
         </div>
         <div class="x-main">
             <div class="x-container">
-                {% for post in site.posts %}
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
-                        <div class="x-box-title grid-box">{{ post.title }}</div>
-                        <div class="x-box-date grid-box">{{ post.date }}</div>
+                        <div class="x-box-title grid-box">{{ title }}</div>
+                        <div class="x-box-date grid-box">{{ date }}</div>
                     </div>
-                    <div class="grid-box x-box-markdown"> {{ post.excerpt }} </div>
+                    <div class="grid-box x-box-markdown"> {{ content }} </div>
                     <div class="grid-box x-box-footer">
                         <div class="x-box-line">
-                            <a href="{{ post.url }}">More</a>
+                            <a href="/index.html">Back</a>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
+                </div>              
             </div>
             <div class="x-footer">
                 <div class="x-footer-msg x-noselect grid-box">
