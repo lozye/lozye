@@ -37,8 +37,7 @@
 
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
-                        <div class="x-box-title grid-box">{{ page.title }}</div>
-                        <div class="x-box-date grid-box">{{ page.date }}</div>
+                        <div class="x-box-title grid-box">{{ page.title }}</div>                        
                     </div>
                     <div class="grid-box x-box-markdown"> {{ content }} </div>
                 </div>
@@ -47,7 +46,7 @@
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
                         <div class="x-box-title grid-box">{{ post.title }}</div>
-                        <div class="x-box-date grid-box">{{ post.date }}</div>
+                        <div class="x-box-date grid-box">{{ post.date | "YYYY-MM-DD" }}</div>
                     </div>
                     <div class="grid-box x-box-markdown"> {{ post.excerpt }} </div>
                     <div class="grid-box x-box-footer">
