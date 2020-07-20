@@ -34,6 +34,15 @@
         </div>
         <div class="x-main">
             <div class="x-container">
+
+                <div class="x-box grid-box">
+                    <div class="grid-box x-box-header">
+                        <div class="x-box-title grid-box">{{ page.title }}</div>
+                        <div class="x-box-date grid-box">{{ page.date }}</div>
+                    </div>
+                    <div class="grid-box x-box-markdown"> {{ content }} </div>                 
+                </div>
+
                 {% for post in site.posts %}
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
