@@ -9,24 +9,32 @@
 <body>
 
     <script>
-        var texstringstring = "hello {name} {xx} {muti}";
+        var texstringstring = "hello {name} {xx}  {name} {muti}{       name}";
 
         /** 文本替换 */
         var format = function (texstring, args) {
             if (!texstring || typeof (texstring) != 'string') return null;
             var result = texstring;
-            if (args.length > 0) for (var i = 0; i < args.length; i++) { result = result.replace("{" + i + "}", args[i] || ""); }
+
+            //arguments 是关键字，可以理解为 params object []
+            if (arguments.length > 2) { var list = []; for (var i = 1; i < arguments.length; i++)list.push(arguments[i]); args = list; }
+            else if (typeof (args) != 'object') args = [args];
+
+            //args 两种模式的处理 list||object
+            if (args.length > 0) {
+                for (var i = 0; i < args.length; i++) { result = result.replace(new RegExp("{ *?" + i + " *?}", "gi"), args[i] || ""); }
+            }
             else for (var key in args) {
                 var value = args[key]; var type = typeof (value);
                 if (value && (type != 'string' && type != 'boolean' && type != 'number')) continue;
-                result = result.replace("{" + key + "}", value || "");
+                result = result.replace(new RegExp("{ *?" + key + " *?}", "gi"), value || "");
             }
             return result;
         };//end format
 
 
 
-        console.log(test(texstringstring, { name: "test", xx: null, muti: true, user: function () { return 1; } }))
+        console.log(format(texstringstring, { name: "test", xx: null, muti: true, user: function () { return 1; } }))
 
 
     </script>
