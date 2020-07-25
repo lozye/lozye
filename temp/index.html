@@ -17,8 +17,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     <style>
-       
+        .cover-7x12 {
+            color: red;
+        }
     </style>
+
 </head>
 
 <body>
@@ -35,40 +38,85 @@
             <div class="x-container">
                 <div class="x-box grid-box">
                     <div class="grid-box x-box-header">
-                        <div class="x-box-title grid-box">青海湖志事</div>
+                        <div class="x-box-title grid-box">
+                            <p class="cover-200x30"></p>
+                        </div>
                         <div class="x-box-date grid-box">2020-07-10</div>
                     </div>
                     <div class="grid-box x-box-markdown markdown-body">
-                        <p>一吻不悔，两相凝望，等不及三四承诺兑现，</p>
-                        <p>也不要五六情言默默，七窍玲珑未将我心明言，</p>
-                        <p>八种人间栓甜苦辣尝尽，九种滋味便是我心中诚惶，</p>
-                        <p>十指相扣，百般不舍，千般恩爱，万般无奈泪涟涟。</p>
-                        <p>万字千言聚是过往，百种心思十轮转，</p>
-                        <p>九封信封封未成寄出，八轮月我却对影酝酿孤独，</p>
-                        <p>七律绝句，六道轮回，五纲伦常乱人性，</p>
-                        <p>四笔起落是心字，对影三人邀月举杯，</p>
-                        <p>二人对饮你在天我在地，一生一世，永不言弃。</p>
+                        <p class="cover-70%"></p>
+                        <p class="cover-70%"></p>
+                        <p class="cover-50%"></p>
+                        <p class="cover-70%"></p>
+                        <p class="cover-70%"></p>
+                        <p class="cover-50%"></p>
+                        <span class="cover-260x200"></span>
+                        <span class="cover-260x200"></span>
                     </div>
                     <div class="grid-box x-box-footer">
                         <div class="x-box-line">
-                            <a href="">MORE</a>
+                            <div class="grid-70">
+                                <ul>
+                                    <li><a href="#">test</a> </li>
+                                    <li><a href="#">test</a></li>
+                                </ul>
+                            </div>
+                            <div class="grid-30">
+                                <a href="#">MORE</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-         
+
             </div>
             <div class="x-footer">
                 <div class="x-footer-msg x-noselect grid-box">
-                    <ul>                       
+                    <ul>
                         <li><span>product by
-                            <a href="https://github.com/lozye" target="_blank">@Lozye</a>
-                        </span></li>
+                                <a href="https://github.com/lozye" target="_blank">@Lozye</a>
+                            </span></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="x-hidden"></div>
     </div>
+    <script>
+        var coverJS = (function () {
+            /** 开始模拟 */
+            var run = function (option) {
+                conf = { bgcolor: "#ddd", heigth: 20 };
+                if (option) for (var key in option) { conf[key] = option[key]; }
+
+                var list = document.querySelectorAll("*[class^=cover-]");
+                for (var i = 0; i < list.length; i++) {
+                    //单线程，不能共用regex
+                    var regex = new RegExp("cover-(\\d+%?)(x(\\d+))?", "ig");
+                    var item = list[i];
+                    var cl = item.getAttribute("class");
+                    var match = regex.exec(cl);
+                    if (!match) continue;
+
+                    //处理默认值
+                    var height = conf.heigth;
+                    if (match[3]) height = match[3];
+                    var width = match[1];
+
+                    var span = document.createElement("span");
+                    span.style.display = "inline-block";
+                    span.innerHTML = "&nbsp;";
+                    if (conf.bgcolor) span.style.backgroundColor = conf.bgcolor;
+                    if (height) { span.style.lineHeight = height + "px"; span.style.height = height + "px"; }
+                    span.style.width = width.endsWith("%") ? width : width + "px";
+                    item.innerHTML = null;
+                    item.appendChild(span);
+                }
+
+            };//end run
+            return { run: run };
+        })();
+        coverJS.run({ heigth: 16 });
+    </script>
 </body>
 
 </html>
