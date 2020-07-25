@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+</header>
+
+<body>
+
+    <script>
+        var texstringstring = "hello {name} {xx} {muti}";
+
+        /** 文本替换 */
+        var format = function (texstring, args) {
+            if (!texstring || typeof (texstring) != 'string') return null;
+            var result = texstring;
+            if (args.length > 0) for (var i = 0; i < args.length; i++) { result = result.replace("{" + i + "}", args[i] || ""); }
+            else for (var key in args) {
+                var value = args[key]; var type = typeof (value);
+                if (value && (type != 'string' && type != 'boolean' && type != 'number')) continue;
+                result = result.replace("{" + key + "}", value || "");
+            }
+            return result;
+        };//end format
+
+
+
+        console.log(test(texstringstring, { name: "test", xx: null, muti: true, user: function () { return 1; } }))
+
+
+    </script>
+</body>
+
+</html>
