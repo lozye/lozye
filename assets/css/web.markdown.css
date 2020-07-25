@@ -32,6 +32,9 @@
 .highlight .s1 { color: #a31515 } /* Literal.String.Single */
 .highlight .ss { color: #a31515 } /* Literal.String.Symbol */
 
+.markdown-body ul, .markdown-body ol {
+	list-style: disc
+}
 
 .markdown-body .octicon {
 	display: inline-block;
