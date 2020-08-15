@@ -53,3 +53,16 @@
     padding: 5px 8px;
     line-height: 16px;
 }
+
+.x-box-line ul li{display: inline-block;}
+.x-box-line ul a{
+    display: inline-block;
+    float: none;
+    background: none;
+    color: #ba8f6c;
+    width: auto;
+    padding: 5px 3px 0 0;
+}
+.x-box-line ul a::before{
+    content: "# ";
+}

@@ -275,6 +275,9 @@ svg{overflow:hidden}
 .x-box-footer{padding:0 5%}
 .x-box-line{border-top:1px solid #ddd;height:45px}
 .x-box-line a{margin-top:10px;display:block;line-height:25px;width:100px;text-align:center;background-color:#4d4d4d;color:#fff;text-decoration:none;float:right;font-size:12px;padding:5px 8px;line-height:16px}
+.x-box-line ul li{display:inline-block}
+.x-box-line ul a{display:inline-block;float:none;background:0 0;color:#ba8f6c;width:auto;padding:5px 3px 0 0}
+.x-box-line ul a::before{content:"# "}
 .x-site-top{position:absolute;width:100%;background-color:#4d4d4d;height:180px}
 .x-site-mid{position:relative;top:110px;border:5px solid #fff;border-radius:300px;width:128px;height:128px;margin:0 auto;overflow:hidden;text-align:center;background-image:url(/assets/images/Lozye.jpg);background-size:contain}
 .x-site-footer{position:relative;top:150px;width:100%;text-align:center}
@@ -318,7 +321,7 @@ svg{overflow:hidden}
 .highlight .s1{color:#a31515}
 .highlight .ss{color:#a31515}
 .markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}
-.markdown-body ul, .markdown-body ol {list-style: disc}
+.markdown-body ol,.markdown-body ul{list-style:disc}
 .markdown-body .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}
 .markdown-body .anchor:focus{outline:0}
 .markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}

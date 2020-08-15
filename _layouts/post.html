@@ -36,7 +36,16 @@
                     <div class="grid-box x-box-markdown markdown-body"> {{ content }} </div>
                     <div class="grid-box x-box-footer">
                         <div class="x-box-line">
-                            <a href="/index.html">BACK</a>
+                            <div class="grid-70">
+                                <ul>
+                                    {% for tag in page.tags %}
+                                    <li><a href="/find.html#{{tag}}">{{ tag }}}</a> </li>                                   
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="grid-30">
+                                <a href="/index.html">BACK</a>
+                            </div>
                         </div>
                     </div>
                 </div>
