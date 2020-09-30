@@ -57,4 +57,17 @@ tags: classic hollywood
 ```
 由于模板引擎关系，以上 `/` 代替 `{`,`}`
 
+### 摘要
+通过在 `tag` 里指定分隔符来实现
+```
+---
+excerpt_separator: <!--more-->
+---
+
+Excerpt with multiple paragraphs
+
+Here's another paragraph in the excerpt.
+<!--more-->
+Out-of-excerpt
+```
 

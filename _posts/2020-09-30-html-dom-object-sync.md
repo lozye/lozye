@@ -2,7 +2,13 @@
 layout: post
 title: html-dom object sync
 tags: js
+excerpt_separator: <!--more-->
 ---
+通过 html 元素做索引，创建一个根据你的选择器创建一个 object 对象。
+你可以操作 object 对象来改变对应元素的值，当然你也可以通过改变元素的值来修改 object 对应属性值。
+这个对象暂时命名为 `propObject` ，但是它的名字注定会改变的<s>注意黑字多意</s>。
+<!--more-->
+
 
 ## 0X1 摘要
 
