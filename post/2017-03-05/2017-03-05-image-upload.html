@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Begin LozyeFramework.WebEngine SEO tag v2.6.1 -->
+<title>jquery image upload | Lozye</title>
+<meta name="generator" content="LozyeFramework.WebEngine v1.0.0" />
+<meta property="og:title" content="jquery image upload" />
+<meta property="og:locale" content="cn_ZH" />
+<meta name="description" content="异步文件上传，图片上传完毕后响应{&quot;state&quot;:&quot;&quot;,&quot;url&quot;:&quot;&quot;}" />
+<meta property="og:description" content="异步文件上传，图片上传完毕后响应{&quot;state&quot;:&quot;&quot;,&quot;url&quot;:&quot;&quot;}" />
+<link rel="canonical" href="https://lozye.github.io/post/2017-03-05/2017-03-05-image-upload.html?v=132466883541729739" />
+<meta property="og:url" content="https://lozye.github.io/post/2017-03-05/2017-03-05-image-upload.html?v=132466883541729739" />
+<meta property="og:site_name" content="Lozye" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-05" />
+<script type="application/ld+json">{"headline":"jquery image upload","dateModified":"2020-10-09T11:39:14+08:00","datePublished":"2020-10-09T11:39:14+08:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://lozye.github.io/post/2017-03-05/2017-03-05-image-upload.html?v=132466883541729739"},"url":"https://lozye.github.io/post/2017-03-05/2017-03-05-image-upload.html?v=132466883541729739","description":"异步文件上传，图片上传完毕后响应{&quot;state&quot;:&quot;&quot;,&quot;url&quot;:&quot;&quot;}","@context":"https://schema.org"}</script>
+<!-- End LozyeFramework.WebEngine SEO tag -->
+    <link href="https://lozye.github.io/assets/css/web.all.css?v=132466883541729739" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="x-wapper">
+        <div class="x-site">
+            <div class="x-site-top"></div>
+            <div class="x-site-mid"></div>
+            <div class="x-site-footer">
+                <p class="x-site-title"><a href="https://lozye.github.io/index.html?v=132466883541729739">Lozye</a></p>
+                <p class="x-site-slogan"><a>身处黑夜，心向黎明！</a></p>
+                <p class="x-site-slogan"><a href="https://lozye.github.io/list.html?v=132466883541729739">全部文章</a></p>
+            </div>
+            <div class="x-site-hidden">
+                <p><a href="http://www.beian.miit.gov.cn/" target="_blank"></a></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="x-main">
+            <div class="x-container">
+                <div class="x-box grid-box">
+                    <div class="grid-box x-box-header">
+                        <div class="x-box-title grid-box">jquery image upload</div>
+                        <div class="x-box-date grid-box">2017-03-05</div>
+                    </div>
+                    <div class="grid-box x-box-markdown markdown-body"> <h2 id="0x1-摘要">0X1 摘要</h2>
+<p>异步文件上传，图片上传完毕后响应 <code>{&quot;state&quot;:&quot;&quot;,&quot;url&quot;:&quot;&quot;}</code></p>
+<h2 id="0x2-使用">0X2 使用</h2>
+<p>需要上传的div加上样式uploadimage 如:<code>&lt;div class=&quot;uploadimage&quot;&gt;点我上传&lt;/div&gt;</code></p>
+<pre><code>imgUpload.config({\&quot;action\&quot;:\&quot;.....\&quot;});//图片接收路径
+imgUpload.Load();//加载插件</code></pre>
+<h3 id="0x3-源码">0X3 源码</h3>
+<pre><code class="language-js"><span class="hljs-comment">//需要上传图片的框体加上class=&gt;uploadimage</span>
+<span class="hljs-comment">//接口调用UEditor图片上传接口</span>
+<span class="hljs-comment">//自定义接口需返回{&quot;state&quot;:&quot;&quot;,&quot;url&quot;:&quot;&quot;}格式</span>
+<span class="hljs-keyword">var</span> imgUpload = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> action = <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">var</span> flag = <span class="hljs-string">&quot;SUCCESS&quot;</span>;
+    <span class="hljs-keyword">var</span> inp = <span class="hljs-literal">undefined</span>;
+    <span class="hljs-keyword">var</span> form = <span class="hljs-literal">undefined</span>;
+    <span class="hljs-keyword">var</span> elem = <span class="hljs-literal">undefined</span>;
+    <span class="hljs-keyword">var</span> frm = <span class="hljs-literal">undefined</span>;
+    <span class="hljs-keyword">var</span> config = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">setting</span>) </span>{
+        action = setting.action;
+        <span class="hljs-keyword">if</span> (setting.flag != <span class="hljs-literal">undefined</span>)
+            flag = setting.flag;
+    };
+    <span class="hljs-keyword">var</span> htmlLoad = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> html = <span class="hljs-string">&quot;&quot;</span>;
+        <span class="hljs-keyword">if</span> (action == <span class="hljs-string">&quot;&quot;</span>) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;必须先设置action路径 调用imgUpload.config({\&quot;action\&quot;:\&quot;.....\&quot;});&quot;</span>;
+        }
+        html += <span class="hljs-string">&quot;   &lt;form action=&#x27;&quot;</span> + action + <span class="hljs-string">&quot;&#x27; method=&#x27;post&#x27; target=&#x27;frmimgupload&#x27; enctype=&#x27;multipart/form-data&#x27;&gt;&quot;</span>;
+        html += <span class="hljs-string">&quot;   &lt;input type=&#x27;file&#x27; id=&#x27;fileBtn&#x27; name=&#x27;upfile&#x27; autocomplete=&#x27;off&#x27; style=&#x27;display:none;&#x27;&gt;&quot;</span>;
+        html += <span class="hljs-string">&quot;   &lt;/form&gt;&lt;iframe name=&#x27;frmimgupload&#x27; style=&#x27;display:none&#x27;&gt;&lt;/iframe&gt;&quot;</span>;
+        $(<span class="hljs-string">&quot;body&quot;</span>).append(html);
+        inp = $(<span class="hljs-string">&quot;#fileBtn&quot;</span>);
+        form = $(<span class="hljs-string">&quot;form[target=frmimgupload]&quot;</span>);
+        frm = $(<span class="hljs-string">&quot;iframe[name=frmimgupload]&quot;</span>);
+    }<span class="hljs-comment">//end htmlLoad</span>
+    <span class="hljs-keyword">var</span> btnLoad = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        $(<span class="hljs-string">&quot;.uploadimage&quot;</span>).unbind(<span class="hljs-string">&quot;click&quot;</span>);
+        $(<span class="hljs-string">&quot;.uploadimage&quot;</span>).css(<span class="hljs-string">&quot;cursor&quot;</span>, <span class="hljs-string">&quot;pointer&quot;</span>);
+        $(<span class="hljs-string">&quot;.uploadimage&quot;</span>).css(<span class="hljs-string">&quot;overflow&quot;</span>, <span class="hljs-string">&quot;hidden&quot;</span>);
+        $(<span class="hljs-string">&quot;.uploadimage&quot;</span>).on(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            elem = $(<span class="hljs-built_in">this</span>);
+            inp.click();
+        });
+    };<span class="hljs-comment">//end btnLoad</span>
+    <span class="hljs-keyword">var</span> picRender = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        inp.change(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> value = inp.val();
+            <span class="hljs-keyword">if</span> (value != <span class="hljs-literal">null</span> &amp;&amp; value != <span class="hljs-string">&quot;&quot;</span>) {
+                form.submit();
+            }
+        });
+        frm.load(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-built_in">console</span>.log($(<span class="hljs-string">&quot;iframe[name=frmimgupload]&quot;</span>).html());
+            <span class="hljs-keyword">var</span> doc = $(<span class="hljs-built_in">window</span>.frames[<span class="hljs-string">&quot;frmimgupload&quot;</span>].document.body).find(<span class="hljs-string">&quot;pre&quot;</span>) || $(<span class="hljs-built_in">window</span>.frames[<span class="hljs-string">&quot;frmimgupload&quot;</span>].document.body);
+            <span class="hljs-keyword">var</span> data = doc.html();
+            <span class="hljs-keyword">if</span> (data != <span class="hljs-string">&quot;&quot;</span> &amp;&amp; data != <span class="hljs-literal">null</span>) {
+                <span class="hljs-keyword">var</span> j = {};
+                <span class="hljs-keyword">try</span> { j = <span class="hljs-built_in">JSON</span>.parse(data); } <span class="hljs-keyword">catch</span> (ex) { <span class="hljs-built_in">console</span>.log(data); <span class="hljs-built_in">console</span>.log(ex); }
+                <span class="hljs-keyword">if</span> (j.state == flag) {
+                    elem.html(<span class="hljs-string">&quot;&lt;img width=\&quot;100%\&quot; heigth=\&quot;100%\&quot; src=\&quot;&quot;</span> + j.url + <span class="hljs-string">&quot;\&quot;&gt;&quot;</span>);
+                }
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">if</span> (layer != <span class="hljs-literal">undefined</span>) {
+                    layer.msg(<span class="hljs-string">&quot;图片上传失败&quot;</span>, { <span class="hljs-attr">time</span>: <span class="hljs-number">1000</span> });
+                } <span class="hljs-keyword">else</span> {
+                    alert(<span class="hljs-string">&quot;图片上传失败&quot;</span>);
+                }
+            }
+        });
+    }<span class="hljs-comment">//end picRender</span>
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-string">&quot;config&quot;</span>: config,
+        <span class="hljs-string">&quot;Load&quot;</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">if</span> (frm == <span class="hljs-literal">undefined</span>) {
+                htmlLoad(); btnLoad(); picRender();
+            } <span class="hljs-keyword">else</span> {
+                btnLoad();
+            }
+        }
+    }
+})();</code></pre>
+<h2 id="0x4-其他">0X4 其他</h2>
+<p>可以直接使用百度<a href="http://ueditor.baidu.com/website/">Ueditor</a></p>
+ </div>
+                    <div class="grid-box x-box-footer">
+                        <div class="x-box-line">
+                            <div class="grid-box x-box-left">
+                                <ul>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#js?v=132466883541729739">js</a> </li>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#jquery?v=132466883541729739">jquery</a> </li>
+                                    
+                                </ul>
+                                &nbsp;
+                            </div>
+                            <div class="grid-box x-box-right">
+                                <a href="https://lozye.github.io/list.html?v=132466883541729739">BACK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-footer">
+                <div class="x-footer-msg x-noselect grid-box">
+                    <ul>
+                        <li>
+                            <span>
+                                product by
+                                <a href="https://github.com/lozye" target="_blank">@Lozye</a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="x-hidden"></div>
+    </div>
+</body>
+
+</html>

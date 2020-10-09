@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Begin LozyeFramework.WebEngine SEO tag v2.6.1 -->
+<title>Typescript 简单的CSS选择器 | Lozye</title>
+<meta name="generator" content="LozyeFramework.WebEngine v1.0.0" />
+<meta property="og:title" content="Typescript 简单的CSS选择器" />
+<meta property="og:locale" content="cn_ZH" />
+<meta name="description" content="Typescrip实现的一个简单CSS选择器" />
+<meta property="og:description" content="Typescrip实现的一个简单CSS选择器" />
+<link rel="canonical" href="https://lozye.github.io/post/2018-09-12/2018-09-12-typescript-dom-selector.html?v=132466883541729739" />
+<meta property="og:url" content="https://lozye.github.io/post/2018-09-12/2018-09-12-typescript-dom-selector.html?v=132466883541729739" />
+<meta property="og:site_name" content="Lozye" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-09-12" />
+<script type="application/ld+json">{"headline":"Typescript 简单的CSS选择器","dateModified":"2020-10-09T11:39:14+08:00","datePublished":"2020-10-09T11:39:14+08:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://lozye.github.io/post/2018-09-12/2018-09-12-typescript-dom-selector.html?v=132466883541729739"},"url":"https://lozye.github.io/post/2018-09-12/2018-09-12-typescript-dom-selector.html?v=132466883541729739","description":"Typescrip实现的一个简单CSS选择器","@context":"https://schema.org"}</script>
+<!-- End LozyeFramework.WebEngine SEO tag -->
+    <link href="https://lozye.github.io/assets/css/web.all.css?v=132466883541729739" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="x-wapper">
+        <div class="x-site">
+            <div class="x-site-top"></div>
+            <div class="x-site-mid"></div>
+            <div class="x-site-footer">
+                <p class="x-site-title"><a href="https://lozye.github.io/index.html?v=132466883541729739">Lozye</a></p>
+                <p class="x-site-slogan"><a>身处黑夜，心向黎明！</a></p>
+                <p class="x-site-slogan"><a href="https://lozye.github.io/list.html?v=132466883541729739">全部文章</a></p>
+            </div>
+            <div class="x-site-hidden">
+                <p><a href="http://www.beian.miit.gov.cn/" target="_blank"></a></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="x-main">
+            <div class="x-container">
+                <div class="x-box grid-box">
+                    <div class="grid-box x-box-header">
+                        <div class="x-box-title grid-box">Typescript 简单的CSS选择器</div>
+                        <div class="x-box-date grid-box">2018-09-12</div>
+                    </div>
+                    <div class="grid-box x-box-markdown markdown-body"> <h2 id="0x1-摘要">0X1 摘要</h2>
+<p>Typescrip实现的一个简单CSS选择器</p>
+<h2 id="0x2-使用">0X2 使用</h2>
+<blockquote>
+<p>入口是 <code>_</code> 如 <code>_(&quot;#id&quot;).html()</code></p>
+</blockquote>
+<h2 id="0x3-源">0X3 源</h2>
+<pre><code class="language-javascript"><span class="hljs-keyword">let</span> formatElementArray = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">elementArray?: NodeListOf&lt;Element&gt;</span>):
+<span class="hljs-title">Array</span>&lt;<span class="hljs-title">Element</span>&gt; 
+</span>{
+        <span class="hljs-keyword">let</span> target: <span class="hljs-built_in">Array</span>&lt;Element&gt; = [];
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> elementArray == <span class="hljs-string">&#x27;undefined&#x27;</span> || elementArray == <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">return</span> target;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; elementArray.length; i++)
+            target.push(elementArray[i]);
+        <span class="hljs-keyword">return</span> target;
+}
+<span class="hljs-keyword">let</span> formatElement = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">element: Element</span>): <span class="hljs-title">Array</span>&lt;<span class="hljs-title">Element</span>&gt; 
+</span>{
+    <span class="hljs-keyword">let</span> target: <span class="hljs-built_in">Array</span>&lt;Element&gt; = [];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> element == <span class="hljs-string">&#x27;undefined&#x27;</span> || element == <span class="hljs-literal">null</span>)
+        <span class="hljs-keyword">return</span> target;
+    target.push(element);
+    <span class="hljs-keyword">return</span> target;
+}
+
+<span class="hljs-keyword">let</span> _ = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">select: any</span>): <span class="hljs-title">_DOM</span>
+</span>{
+    <span class="hljs-keyword">let</span> _type = <span class="hljs-keyword">typeof</span> select;
+    <span class="hljs-keyword">if</span> (_type == <span class="hljs-string">&#x27;string&#x27;</span>) {
+        <span class="hljs-keyword">let</span> res = <span class="hljs-built_in">document</span>.querySelectorAll(select);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> _DOM(formatElementArray(res));
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> select._type == <span class="hljs-string">&#x27;string&#x27;</span> &amp;&amp; select._type == <span class="hljs-string">&#x27;_DOM&#x27;</span>)
+        <span class="hljs-keyword">return</span> select;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> select.length == <span class="hljs-string">&#x27;undefined&#x27;</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> _DOM(formatElement(select));
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> _DOM(select);
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_DOM</span> </span>{
+    private m_array: <span class="hljs-built_in">Array</span>&lt;HTMLElement&gt;;
+    private m_length: number;
+    public Body: any;
+    public _type: string = <span class="hljs-string">&quot;_DOM&quot;</span>;
+    <span class="hljs-keyword">constructor</span>(array: Array&lt;any&gt;) {
+        <span class="hljs-built_in">this</span>.m_length = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> (array == <span class="hljs-literal">undefined</span> || array == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+        <span class="hljs-built_in">this</span>.m_array = array;
+        <span class="hljs-built_in">this</span>.m_length = array.length;
+        <span class="hljs-built_in">this</span>.Body = <span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">1</span> ? array[<span class="hljs-number">0</span>] : array;
+    }
+    public on(action: string, <span class="hljs-attr">callback</span>: any): <span class="hljs-keyword">void</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++)
+            <span class="hljs-built_in">this</span>.m_array[i].addEventListener(action, callback, <span class="hljs-literal">false</span>);
+    }
+    public html(html?: string): any {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (html != <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++)
+                <span class="hljs-built_in">this</span>.m_array[i].innerHTML = html;
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.m_array[<span class="hljs-number">0</span>].innerHTML;
+    }
+    public css(name: string, target?: string): any {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (target != <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++)
+                <span class="hljs-built_in">this</span>.m_array[i].style.setProperty(name, target);
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.m_array[<span class="hljs-number">0</span>].style.getPropertyValue(name);
+    }
+    public attr(name: string, target?: string): any {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (target != <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++)
+                <span class="hljs-built_in">this</span>.m_array[i].setAttribute(name, target);
+        <span class="hljs-keyword">else</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.m_array[<span class="hljs-number">0</span>].getAttribute(name);
+    }
+    public removeAttr(name: string): <span class="hljs-keyword">void</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++)
+            <span class="hljs-built_in">this</span>.m_array[i].removeAttribute(name);
+    }
+    public removeCSS(name: string): <span class="hljs-keyword">void</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++)
+            <span class="hljs-built_in">this</span>.m_array[i].style.removeProperty(name);
+    }
+    public val(target?: string): any {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">if</span> (target != <span class="hljs-literal">null</span>) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.m_length; i++) {
+                <span class="hljs-keyword">let</span> inp = <span class="hljs-built_in">this</span>.m_array[i] <span class="hljs-keyword">as</span> any;
+                <span class="hljs-keyword">if</span> (!inp.value) <span class="hljs-keyword">continue</span>;
+                inp.value = target;
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">let</span> inp = <span class="hljs-built_in">this</span>.m_array[<span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> any;
+            <span class="hljs-keyword">if</span> (inp.value) <span class="hljs-keyword">return</span> inp.value;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
+    }
+    public find(target: string): _DOM {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.m_length == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">let</span> res = <span class="hljs-built_in">this</span>.m_array[<span class="hljs-number">0</span>].querySelectorAll(target);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> _DOM(formatElementArray(res));
+    }
+}</code></pre>
+ </div>
+                    <div class="grid-box x-box-footer">
+                        <div class="x-box-line">
+                            <div class="grid-box x-box-left">
+                                <ul>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#typescript?v=132466883541729739">typescript</a> </li>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#ts?v=132466883541729739">ts</a> </li>
+                                    
+                                </ul>
+                                &nbsp;
+                            </div>
+                            <div class="grid-box x-box-right">
+                                <a href="https://lozye.github.io/list.html?v=132466883541729739">BACK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-footer">
+                <div class="x-footer-msg x-noselect grid-box">
+                    <ul>
+                        <li>
+                            <span>
+                                product by
+                                <a href="https://github.com/lozye" target="_blank">@Lozye</a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="x-hidden"></div>
+    </div>
+</body>
+
+</html>

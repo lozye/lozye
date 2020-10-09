@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Begin LozyeFramework.WebEngine SEO tag v2.6.1 -->
+<title>HOW TO USE GITPAGE | Lozye</title>
+<meta name="generator" content="LozyeFramework.WebEngine v1.0.0" />
+<meta property="og:title" content="HOW TO USE GITPAGE" />
+<meta property="og:locale" content="cn_ZH" />
+<meta name="description" content="GITPAGE使用了JEKYLL静态渲染页面，以下说明其中的目录结构与主要关键字" />
+<meta property="og:description" content="GITPAGE使用了JEKYLL静态渲染页面，以下说明其中的目录结构与主要关键字" />
+<link rel="canonical" href="https://lozye.github.io/post/2020-07-20/2020-07-20-how-to-use-gitpage.html?v=132466883541729739" />
+<meta property="og:url" content="https://lozye.github.io/post/2020-07-20/2020-07-20-how-to-use-gitpage.html?v=132466883541729739" />
+<meta property="og:site_name" content="Lozye" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-20" />
+<script type="application/ld+json">{"headline":"HOW TO USE GITPAGE","dateModified":"2020-10-09T11:39:14+08:00","datePublished":"2020-10-09T11:39:14+08:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://lozye.github.io/post/2020-07-20/2020-07-20-how-to-use-gitpage.html?v=132466883541729739"},"url":"https://lozye.github.io/post/2020-07-20/2020-07-20-how-to-use-gitpage.html?v=132466883541729739","description":"GITPAGE使用了JEKYLL静态渲染页面，以下说明其中的目录结构与主要关键字","@context":"https://schema.org"}</script>
+<!-- End LozyeFramework.WebEngine SEO tag -->
+    <link href="https://lozye.github.io/assets/css/web.all.css?v=132466883541729739" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="x-wapper">
+        <div class="x-site">
+            <div class="x-site-top"></div>
+            <div class="x-site-mid"></div>
+            <div class="x-site-footer">
+                <p class="x-site-title"><a href="https://lozye.github.io/index.html?v=132466883541729739">Lozye</a></p>
+                <p class="x-site-slogan"><a>身处黑夜，心向黎明！</a></p>
+                <p class="x-site-slogan"><a href="https://lozye.github.io/list.html?v=132466883541729739">全部文章</a></p>
+            </div>
+            <div class="x-site-hidden">
+                <p><a href="http://www.beian.miit.gov.cn/" target="_blank"></a></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="x-main">
+            <div class="x-container">
+                <div class="x-box grid-box">
+                    <div class="grid-box x-box-header">
+                        <div class="x-box-title grid-box">HOW TO USE GITPAGE</div>
+                        <div class="x-box-date grid-box">2020-07-20</div>
+                    </div>
+                    <div class="grid-box x-box-markdown markdown-body"> <p>GITPAGE使用了JEKYLL静态渲染页面，以下说明其中的目录结构与主要关键字</p>
+<h3 id="jekyll-目录结构">jekyll 目录结构</h3>
+<p><a href="https://jekyllrb.com/docs/structure/">官方文档</a></p>
+<pre><code>├── _config.yml
+├── _layouts
+│   ├── default.html
+│   └── post.html
+├── _posts
+│   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
+│   └── 2009-04-26-barcamp-boston-4-roundup.md
+└── index.html # can also be an &#x27;index.md&#x27; </code></pre>
+<p>其中主要目录 <code>_layouts</code>,<code>_posts</code></p>
+<ul>
+<li><code>_layouts</code> 作为模板目录，模板名称就是文件名，如<code>post.html</code>模板名称就是<code>post</code></li>
+<li><code>_posts</code> 作为文章目标，一个特殊点是文件名必须按 <code>yyyy-MM-dd-{name}.md</code>命名</li>
+</ul>
+<h3 id="jekyll-文章关键字">jekyll 文章关键字</h3>
+<p><a href="https://jekyllrb.com/docs/posts/">官方文档</a></p>
+<pre><code>---
+layout: post
+title:  &quot;Welcome to Jekyll!&quot;
+tags: classic hollywood
+---</code></pre>
+<ul>
+<li><code>layout</code> 模板选择</li>
+<li><code>title</code> 标题</li>
+<li><code>tags</code> 标签，其中<code>classic hollywood</code>将被处理为条目数组<code>[&quot;classic&quot;, &quot;hollywood&quot;]</code></li>
+</ul>
+<h3 id="jekyll-模板关键字及渲染">jekyll 模板关键字及渲染</h3>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  /% for post in site.posts %/
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;// post.url //&quot;</span>&gt;</span>// post.title //<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      // post.excerpt //
+      <span class="hljs-comment">&lt;!-- 摘要 --&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  /% endfor %/
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
+<p>由于模板引擎关系，以上 <code>/</code> 代替 <code>{</code>,<code>}</code></p>
+<h3 id="摘要">摘要</h3>
+<p>通过在 <code>tag</code> 里指定分隔符来实现</p>
+<pre><code>---
+excerpt_separator: &lt;!--more--&gt;
+---
+
+Excerpt with multiple paragraphs
+
+Here&#x27;s another paragraph in the excerpt.
+&lt;!--more--&gt;
+Out-of-excerpt</code></pre>
+ </div>
+                    <div class="grid-box x-box-footer">
+                        <div class="x-box-line">
+                            <div class="grid-box x-box-left">
+                                <ul>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#gitpage?v=132466883541729739">gitpage</a> </li>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#jekyll?v=132466883541729739">jekyll</a> </li>
+                                    
+                                </ul>
+                                &nbsp;
+                            </div>
+                            <div class="grid-box x-box-right">
+                                <a href="https://lozye.github.io/list.html?v=132466883541729739">BACK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-footer">
+                <div class="x-footer-msg x-noselect grid-box">
+                    <ul>
+                        <li>
+                            <span>
+                                product by
+                                <a href="https://github.com/lozye" target="_blank">@Lozye</a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="x-hidden"></div>
+    </div>
+</body>
+
+</html>

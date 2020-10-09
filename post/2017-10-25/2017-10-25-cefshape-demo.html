@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Begin LozyeFramework.WebEngine SEO tag v2.6.1 -->
+<title>CefShape Demo | Lozye</title>
+<meta name="generator" content="LozyeFramework.WebEngine v1.0.0" />
+<meta property="og:title" content="CefShape Demo" />
+<meta property="og:locale" content="cn_ZH" />
+<meta name="description" content="CefSharp 是C#平台下CEF的移植,让Chromium在你的winform或WPF里面跑起来，以下CefSharp版本号为CefSharp47" />
+<meta property="og:description" content="CefSharp 是C#平台下CEF的移植,让Chromium在你的winform或WPF里面跑起来，以下CefSharp版本号为CefSharp47" />
+<link rel="canonical" href="https://lozye.github.io/post/2017-10-25/2017-10-25-cefshape-demo.html?v=132466883541729739" />
+<meta property="og:url" content="https://lozye.github.io/post/2017-10-25/2017-10-25-cefshape-demo.html?v=132466883541729739" />
+<meta property="og:site_name" content="Lozye" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-25" />
+<script type="application/ld+json">{"headline":"CefShape Demo","dateModified":"2020-10-09T11:39:14+08:00","datePublished":"2020-10-09T11:39:14+08:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://lozye.github.io/post/2017-10-25/2017-10-25-cefshape-demo.html?v=132466883541729739"},"url":"https://lozye.github.io/post/2017-10-25/2017-10-25-cefshape-demo.html?v=132466883541729739","description":"CefSharp 是C#平台下CEF的移植,让Chromium在你的winform或WPF里面跑起来，以下CefSharp版本号为CefSharp47","@context":"https://schema.org"}</script>
+<!-- End LozyeFramework.WebEngine SEO tag -->
+    <link href="https://lozye.github.io/assets/css/web.all.css?v=132466883541729739" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="x-wapper">
+        <div class="x-site">
+            <div class="x-site-top"></div>
+            <div class="x-site-mid"></div>
+            <div class="x-site-footer">
+                <p class="x-site-title"><a href="https://lozye.github.io/index.html?v=132466883541729739">Lozye</a></p>
+                <p class="x-site-slogan"><a>身处黑夜，心向黎明！</a></p>
+                <p class="x-site-slogan"><a href="https://lozye.github.io/list.html?v=132466883541729739">全部文章</a></p>
+            </div>
+            <div class="x-site-hidden">
+                <p><a href="http://www.beian.miit.gov.cn/" target="_blank"></a></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="x-main">
+            <div class="x-container">
+                <div class="x-box grid-box">
+                    <div class="grid-box x-box-header">
+                        <div class="x-box-title grid-box">CefShape Demo</div>
+                        <div class="x-box-date grid-box">2017-10-25</div>
+                    </div>
+                    <div class="grid-box x-box-markdown markdown-body"> <h2 id="0x1-简介">0X1 简介</h2>
+<p>CefSharp 是C#平台下CEF的移植,让Chromium在你的winform或WPF里面跑起来，以下CefSharp版本号为CefSharp47</p>
+<h2 id="0x2-链接文档与演示">0X2 链接文档与演示</h2>
+<ul>
+<li><a href="//github.com/cefsharp/CefSharp">GitHub</a></li>
+<li><a href="//github.com/cefsharp/CefSharp/wiki/CefSharp%E4%B8%AD%E6%96%87%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3">中文文档</a></li>
+<li><a href="//github.com/lozye/CefShapeSample/tree/master/Demo">Sample</a></li>
+</ul>
+<h2 id="0x3-全局设置">0X3 全局设置</h2>
+<pre><code>CefSettings setting = new CefSharp.CefSettings();
+// 设置语言
+setting.Locale = &quot;zh-CN&quot;;
+setting.UserAgent = &quot;Mozilla/5.0 (Windows NT 6.1; WOW64)&quot;;
+//缓存路径
+setting.CachePath = AppDomain.CurrentDomain.BaseDirectory + &quot;cache//&quot;;
+setting.PersistSessionCookies = false;
+CefSharp.Cef.Initialize(setting, true, false);
+//cookie保存路径
+string cookieDirec = AppDomain.CurrentDomain.BaseDirectory + &quot;cache//cookie//&quot;;
+//如果需要缓存Cookie不要后面这句
+if (Directory.Exists(cookieDirec)) Directory.Delete(cookieDirec, true);
+ICookieManager cookieManager = CefSharp.Cef.GetGlobalCookieManager();
+cookieManager.SetStoragePath(cookieDirec, false);</code></pre>
+<h2 id="0x4-弹出窗口问题">0X4 弹出窗口问题</h2>
+<ol>
+<li>重写IRequestHandler类 重写OnBeforeResourceLoad方法<pre><code>ChromiumWebBrowser cef = null;
+</code></pre>
+</li>
+</ol>
+<p>//传入主窗体
+public void Load(ref ChromiumWebBrowser browser)
+{
+    cef = browser;
+}</p>
+<p>CefReturnValue IRequestHandler.OnBeforeResourceLoad(IWebBrowser browserControl,
+IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
+    {
+        var frm = cef.GetBrowser().MainFrame;
+        var req = frm.CreateRequest(true);
+        if (request.PostData != null &amp;&amp; request.PostData.Elements != null)
+            foreach (var item in request.PostData.Elements)
+                req.PostData.AddElement(item);
+        req.Method = request.Method;
+        req.SetReferrer(request.ReferrerUrl, request.ReferrerPolicy);
+        req.Url = request.Url;
+        frm.LoadRequest(req);
+        return CefReturnValue.Cancel;
+    }</p>
+<pre><code>
+2.重写ILifeSpanHandler 重写OnBeforePopup方法</code></pre>
+<p>ChromiumWebBrowser cef = null;</p>
+<p>//传入主窗体
+public void Load(ref ChromiumWebBrowser browser)
+{
+    cef = browser;
+}
+public bool OnBeforePopup(IWebBrowser browserControl, IBrowser browser,
+IFrame frame, string targetUrl, string targetFrameName, 
+WindowOpenDisposition targetDisposition, bool userGesture, 
+IWindowInfo windowInfo, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
+    {
+        newBrowser = null;
+        var wbHide = new ChromiumWebBrowser(&quot;about:blank&quot;);
+        var handler= new YsRequestHandler();
+        handler.Load(ref cef);
+        wbHide.RequestHandler = handler;
+        newBrowser = wbHide;
+        return false;//{false:允许新窗口，true:禁止新窗口}<br>    }</p>
+<pre><code>
+3.加载ILifeSpanHandler</code></pre>
+<p>wb = new ChromiumWebBrowser(&quot;about:blank&quot;);
+var handler = new YsLifeSpanHandler();
+handler.Load(ref wb);
+wb.LifeSpanHandler = handler;
+wb.Dock = DockStyle.Fill;
+frm.Controls.Add(wb);</p>
+<pre><code>
+## 0X5 禁用右键菜单
+重写 IContextMenuHandler</code></pre>
+<p>public bool RunContextMenu(IWebBrowser browserControl, 
+IBrowser browser, IFrame frame, IContextMenuParams parameters,
+IMenuModel model, IRunContextMenuCallback callback)
+    {
+        return true;
+    }</p>
+<p>```</p>
+<h2 id="0x6-使用cefshape">0X6 使用Cefshape</h2>
+<p>参考DEMO <a href="//github.com/lozye/CefShapeSample/tree/master/Demo">GitHub Lozye</a></p>
+ </div>
+                    <div class="grid-box x-box-footer">
+                        <div class="x-box-line">
+                            <div class="grid-box x-box-left">
+                                <ul>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#cefs?v=132466883541729739">cefs</a> </li>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#c#?v=132466883541729739">c#</a> </li>
+                                    
+                                    <li><a href="https://lozye.github.io/list.html#cefshape?v=132466883541729739">cefshape</a> </li>
+                                    
+                                </ul>
+                                &nbsp;
+                            </div>
+                            <div class="grid-box x-box-right">
+                                <a href="https://lozye.github.io/list.html?v=132466883541729739">BACK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-footer">
+                <div class="x-footer-msg x-noselect grid-box">
+                    <ul>
+                        <li>
+                            <span>
+                                product by
+                                <a href="https://github.com/lozye" target="_blank">@Lozye</a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="x-hidden"></div>
+    </div>
+</body>
+
+</html>
