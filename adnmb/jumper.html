@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>黎明版-镜像</title>
+    <link href="/adnmb/dist/adnmbCSS.css?v2.1" rel="stylesheet" />
+    <style>
+        .nmb-jumper input, .nmb-jumper span {
+            display: block;
+            border: none;
+            outline: none;
+            padding: 0;
+            margin: 0;
+            zoom: normal;
+            background: none;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #00ab9a;
+        }
+
+        .nmb-jumper span {
+            background-color: #00ab9a;
+            color: white;
+            font-size: 14px;
+            letter-spacing: 10px;
+        }
+
+        .nmb-jumper p {
+            color: #00ab9a;
+            font-size: 14px;
+        }
+
+        .nmb-jumper dl {
+            margin-top: 100px;
+        }
+
+        .nmb-jumper dd {
+            width: 70%;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="nmb-wapper">
+        <div class="nmb-side">
+            <div class="nmb-side-head">
+                黎明版-镜像
+            </div>
+            <ul class="nmb-side-ul">
+                <li><a href="http://adnmb.com" target="_blank">传送门</a></li>
+                <li><a href="/adnmb/list.html">时间线</a></li>
+                <li><a href='/adnmb/list.html?value=5452454E44494E47'>趋势</a></li>
+                <li><a href="/adnmb/history.html">收藏</a></li>
+                <li><a href="/adnmb/jumper.html">跳转</a></li>
+            </ul>
+            <p class="nmb-side-name">版块列表</p>
+            <ul class="nmb-side-ul" id="dynamic_lst">
+                <li><a href="/adnmb/list.html">时间线</a></li>
+            </ul>
+        </div>
+        <div class="nmb-content">
+            <div class="nmb-jumper">
+                <dl>
+                    <dd><p>那么，说出你的愿望</p></dd>
+                    <dd><input type="text" autocomplete="off"></dd>
+                    <dd><span>跳转</span></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="nmb-mask"></div>
+        <div class="nmb-msg">
+            <div class="nmb-msg-content">...</div>
+        </div>
+        <div class="nmb-foot">
+            <table class="nmb-foot-table">
+                <tr>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="nmb-helper">
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>↑</p></div>
+            <div class="nmb-helper-td"><p>→</p></div>
+        </div>
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>←</p></div>
+            <div class="nmb-helper-td"><p>↓</p></div>
+        </div>
+    </div>
+    <!-- =================== javascript =================== -->
+    <script src="/dist/js/template-web.js?v4.13"></script>
+    <script src="/dist/js/moveJS.js"></script>
+    <script src="/adnmb/dist/nmbstyleJS.js?v2.1"></script>
+    <script>
+        nmbstyleJS.listen({ "nmb_lst": true });
+        var jumperJS = (function () {
+            var reg = /\.com\/t\/(\d+)(\?r=)?/;
+            var listen = function () {
+                var zone = document.getElementsByClassName("nmb-jumper")[0];
+                var input = zone.getElementsByTagName("input")[0];
+                var span = zone.getElementsByTagName("span")[0];
+                span.addEventListener("click", function (e) {
+                    var val = input.value;
+                    if (!val) return;
+                    var target = 0;
+                    if (!isNaN(val))
+                        target = val;
+                    else {
+                        var array = val.match(reg);
+                        if (array == null) return;
+                        target = array[1];
+                    }
+                    var newTab = window.open();
+                    newTab.opener = null;
+                    newTab.location = "/adnmb/docment.html?id=" + target;
+                }, false);
+            }
+            return { "listen": listen }
+        })();
+        jumperJS.listen();
+    </script>
+</body>
+</html>

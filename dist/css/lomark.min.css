@@ -1,0 +1,49 @@
+#marked{font-family:Consolas,"微软雅黑";font-size:14px;line-height:22px;margin:10px 0}
+#marked h1{font-size:2em;margin:.67em 0}
+#marked h2{font-size:1.5em;margin:.75em 0}
+#marked h3{font-size:1.17em;margin:.83em 0}
+#marked blockquote,#marked dir,#marked dl,#marked fieldset,#marked form,#marked h4,#marked menu,#marked ol,#marked p,#marked ul{margin:1.12em 0}
+#marked ol,#marked ul{margin-left:40px}
+#marked h5{font-size:.83em;margin:1.5em 0}
+#marked h6{font-size:.75em;margin:1.67em 0}
+#marked table th{font-weight:700}
+#marked li{list-style-type:unset}
+#marked li::before{content:"•"; padding-right:5px; }
+#marked img{max-width:100%;max-height:100%}
+#marked a{color:#4080d0;text-decoration:none}
+#marked a:focus,#marked input:focus,#marked select:focus,#marked textarea:focus{outline:1px solid -webkit-focus-ring-color;outline-offset:-1px}
+#marked hr{border:none;border-bottom:1px solid #000}
+#marked h1{padding-bottom:.3em;line-height:1.2;border-bottom-width:1px;border-bottom-style:solid}
+#marked h1,#marked h2,#marked h3{font-weight:400}
+#marked a:hover{color:#4080d0;text-decoration:underline}
+#marked table{margin:10px 0 15px 5%;min-width:40%;border-collapse:collapse;text-align:left}
+#marked table tr:hover{background-color:#777}
+#marked table td,#marked table th{padding:5px 10px;border:1px solid}
+#marked blockquote{margin:0 0 0 5px;padding-left:10px;border-left:5px solid}
+#marked pre{padding:5px 10px;border:1px solid #ccc; background-color:#eee; -webkit-border-radius:0px;-moz-border-radius:0px;border-radius:0px;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;overflow:auto}
+#marked pre code{padding:0;border:none}
+#marked code{font-family:Consolas,"微软雅黑";padding:0 2px 1px;border:1px solid #e1e1e8;-webkit-border-radius:3px;-moz-border-radius:3px;border-radius:3px}
+#marked .mac code{font-size:12px;line-height:18px}
+#marked code>div{padding:16px;border-radius:3px;overflow:auto}
+#marked .hc-black blockquote{background:0 0;border-color:#fff}
+#marked .pln{color:#000}
+@media screen{#marked .str{color:#080}
+#marked .kwd{color:#008}
+#marked .com{color:#800}
+#marked .typ{color:#606}
+#marked .lit{color:#066}
+#marked .clo,#marked .opn,#marked .pun{color:#660}
+#marked .tag{color:#008}
+#marked .atn{color:#606}
+#marked .atv{color:#080}
+#marked .dec,#marked .var{color:#606}
+#marked .fun{color:red}}
+@media print,projection{#marked .str{color:#060}
+#marked .kwd{color:#006;font-weight:700}
+#marked .com{color:#600;font-style:italic}
+#marked .typ{color:#404;font-weight:700}
+#marked .lit{color:#044}
+#marked .clo,#marked .opn,#marked .pun{color:#440}
+#marked .tag{color:#006;font-weight:700}
+#marked .atn{color:#404}
+#marked .atv{color:#060}}

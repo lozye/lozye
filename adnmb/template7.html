@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>黎明版-镜像</title>
+    <link href="/adnmb/dist/adnmbCSS.css?v2.0" rel="stylesheet" />
+    <style></style>
+</head>
+<body style="height:100%;">
+    <div class="nmb-wapper">
+        <div class="nmb-side" style="height:100%;">
+            <div class="nmb-side-head">
+                黎明版-镜像
+            </div>
+            <ul class="nmb-side-ul">
+                <li><a href="http://adnmb.com" target="_blank">传送门</a></li>
+                <li><a href="/adnmb/list.html">时间线</a></li>
+                <li><a href='/adnmb/list.html?value=5452454E44494E47'>趋势</a></li>
+                <li><a href="/adnmb/history.html">收藏</a></li>
+                <li><a href="/adnmb/jumper.html">跳转</a></li>
+            </ul>
+            <p class="nmb-side-name">版块列表</p>
+            <ul class="nmb-side-ul" id="dynamic_lst">
+                <li><a href="/adnmb/list.html">时间线</a></li>
+            </ul>
+        </div>
+        <div class="nmb-content">
+            <div class="nmb-content-append">
+                <dl id="dynamic_view">
+                    <dd>
+                        <div class="nmb-thread-info">
+                            <div class="nmb-thread-id">sdadasww</div>
+                            <div class="nmb-thread-date">18/08/28 10:22</div>
+                            <div class="nmb-thread-type">综合一</div>
+                            <div class="nmb-thread-depth">1755</div>
+                            <div class="nmb-thread-title">标题：我们是害虫</div>
+                        </div>
+                        <div class="nmb-thread-content">
+                            <div class="nmb-thread-img">
+                                <a href="" target="_blank">
+                                    <img style="width:150px;height:auto;" />
+                                </a>
+                            </div>
+                            <div style=" height:2000px; background-color:aqua;">
+                                <button id="b-1">click</button>
+                                content
+                                <button id="b-2">click</button>
+                            </div>
+
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="nmb-content-loading" style="display:none">刷A岛很卡 你很火大</div>
+        </div>
+        <div class="nmb-mask"></div>
+        <div class="nmb-msg">
+            <div class="nmb-msg-content">...</div>
+        </div>
+        <div class="nmb-foot">
+            <table class="nmb-foot-table">
+                <tr>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="nmb-helper">
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>↑</p></div>
+            <div class="nmb-helper-td"><p>→</p></div>
+        </div>
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>←</p></div>
+            <div class="nmb-helper-td"><p>↓</p></div>
+        </div>
+    </div>
+
+    <!-- =================== javascript =================== -->
+    <script src="/dist/js/template-web.js?v4.13"></script>
+    <script src="/dist/js/moveJS.js"></script>
+    <script src="/adnmb/dist/nmbstyleJS.js?v2.1"></script>
+    <script src="/adnmb/dist/adnmbJS.js?v2.1"></script>
+
+    <script type="text/html" id="temp_lst">
+        <div class="nmb-thread-info">
+            <div class="nmb-thread-id">{{@topic.uid}}</div>
+            <div class="nmb-thread-date">{{topic.createdat}}</div>
+            {{ if thread_type!=null }}
+            <div class="nmb-thread-type">{{thread_type}}</div>
+            {{ /if }}
+            <div class="nmb-thread-depth">{{thread_depth}}</div>
+            {{ if topic.title!='无标题' }}
+            <div class="nmb-thread-title">标题：{{topic.title}}</div>
+            {{/if}}
+        </div>
+        <div class="nmb-thread-content">
+            <input type="hidden" value="{{thread_id}}" />
+            {{ if topic.image }}
+            <div class="nmb-thread-img">
+                <a href="{{topic.img_target}}" target="_blank">
+                    <img src="{{topic.image}}" />
+                </a>
+            </div>
+            {{ /if }}
+            {{@topic.content}}
+            <div style="clear:both"></div>
+        </div>
+    </script>
+
+    <script>
+
+        var extjs = (function () {
+            var alertheight = function () {
+                alert(window.outerHeight);
+            };//
+            var listen = function () {
+                moveJS.on("right", function () {
+                    var el = document.getElementsByClassName("nmb-side")[0];
+                    el.style.height = window.outerHeight + 'px';
+                    nmbstyleJS.on_right();
+                    //nmbstyleJS.msg(el.style.height);
+                });
+                document.getElementById("b-2").addEventListener("click", function () { alertheight(); });
+                document.getElementById("b-1").addEventListener("click", function () { alertheight(); });
+            };//
+            return { "listen": listen };
+        })();
+
+        nmbstyleJS.listen({ "nmb_lst": true });
+        //adnmbJS.on_lst();
+        extjs.listen();
+    </script>
+</body>
+</html>

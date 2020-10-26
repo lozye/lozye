@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>黎明版-镜像</title>
+    <link href="/adnmb/dist/adnmbCSS.css?v2.1" rel="stylesheet" />
+    <style>
+        .nmb-thread-depth a {
+            color: #00ab9a;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="nmb-wapper">
+        <div class="nmb-side">
+            <div class="nmb-side-head">
+                黎明版-镜像
+            </div>
+            <ul class="nmb-side-ul">
+                <li><a href="http://adnmb.com" target="_blank">传送门</a></li>
+                <li><a href="/adnmb/list.html">时间线</a></li>
+                <li><a href='/adnmb/list.html?value=5452454E44494E47'>趋势</a></li>
+                <li><a href="/adnmb/history.html">收藏</a></li>
+                <li><a href="/adnmb/jumper.html">跳转</a></li>
+            </ul>
+            <p class="nmb-side-name">版块列表</p>
+            <ul class="nmb-side-ul" id="dynamic_lst">
+                <li><a href="/adnmb/list.html">时间线</a></li>
+            </ul>
+        </div>
+        <div class="nmb-content">
+            <div class="nmb-content-append">
+                <dl id="dynamic_view">
+                    <dd style="display:none">
+                        <div class="nmb-thread-info">
+                            <div class="nmb-thread-id">No.15140132</div>
+                            <div class="nmb-thread-depth"><a href="#">删除</a></div>
+                        </div>
+                        <div class="nmb-thread-content">
+                            刷A岛很卡 你很火大
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="nmb-content-loading">你真的有收藏吗？</div>
+        </div>
+        <div class="nmb-mask"></div>
+        <div class="nmb-msg">
+            <div class="nmb-msg-content">...</div>
+        </div>
+        <div class="nmb-foot">
+            <table class="nmb-foot-table">
+                <tr>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="nmb-helper">
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>↑</p></div>
+            <div class="nmb-helper-td"><p>→</p></div>
+        </div>
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>←</p></div>
+            <div class="nmb-helper-td"><p>↓</p></div>
+        </div>
+    </div>
+    <!-- =================== javascript =================== -->
+    <script src="/dist/js/template-web.js?v4.13"></script>
+    <script src="/dist/js/moveJS.js"></script>
+    <script src="/adnmb/dist/nmbstyleJS.js?v2.1"></script>
+    <script src="/adnmb/dist/adnmbJS.js?v2.1"></script>
+
+    <script type="text/html" id="temp_lst">
+        <input type="hidden" value="{{page}}" />
+        <div class="nmb-thread-info">
+            <div class="nmb-thread-id">No.{{id}}</div>
+            <div class="nmb-thread-depth"><a href="#">删除</a></div>
+        </div>
+        <div class="nmb-thread-content">
+            {{body}}
+        </div>
+    </script>
+
+    <script>
+        nmbstyleJS.listen({ "nmb_lst": true });
+        var historyJS = (function () {
+            var map = window.localStorage;
+            var suffix = "nmb_";
+            var history_compiled = false;
+            var history_temp = (x) = {};
+
+            var x_template = function (item) {
+                if (!history_compiled) {
+                    history_compiled = true
+                    history_temp = template.compile(document.getElementById("temp_lst").innerHTML);
+                }
+                var dd = document.createElement("dd");
+                dd.innerHTML = history_temp(item);
+                var href = dd.getElementsByTagName("a")[0];
+                var body = dd.getElementsByClassName("nmb-thread-content")[0];
+                href.addEventListener("click", function (e) {
+                    dynamic_view.removeChild(dd);
+                    m_remove(item.id);
+                    m_chick();
+                }, false);
+                body.addEventListener("click", function (e) {
+                    var newTab = window.open();
+                    newTab.opener = null;
+                    newTab.location = "/adnmb/docment.html?id=" + item.id + "&p=" + item.page;
+                }, false);
+                return dd;
+            };
+
+            var m_each = function (fn) {
+                for (var i = 0; i < map.length; i++) {
+                    var key = map.key(i);
+                    if (!key.startsWith(suffix)) continue;
+                    fn(key.substr(4));
+                }
+            }
+            var m_clear = function () {
+                for (var i = 0; i < map.length; i++) {
+                    var key = map.key(i);
+                    if (!key.startsWith(suffix)) continue;
+                    map.removeItem(key);
+                }
+            }
+            var m_get = (key) => map.getItem(suffix + key);
+            var m_remove = (key) => map.removeItem(suffix + key);
+            var dynamic_view = document.getElementById("dynamic_view");
+
+            var load = function () {
+                m_each(m_reader);
+                m_chick();
+            }
+            var m_reader = function (key) {
+                var value = m_get(key);
+                var a = value.indexOf("|");
+                if (a <= 0 || a > 6) return;
+                var item = { "id": key, "page": value.substr(0, a), "body": value.substr(a + 1) };
+                var dd = x_template(item);
+                dynamic_view.appendChild(dd);
+            }
+
+            var m_chick = function () {
+                var div = document.getElementsByClassName("nmb-content-loading")[0];
+                for (var i = 0; i < map.length; i++) {
+                    var key = map.key(i);
+                    if (!key.startsWith(suffix)) continue;
+                    div.style.setProperty("display", "none");
+                    return;
+                }
+                div.style.setProperty("display", "block");
+            }
+
+            return { "load": load }
+        })();
+        historyJS.load();
+                                //nmbstyleJS.msg("访问超时")
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <title>黎明版-镜像</title>
+    <link href="/dist/css/unsemantic.min.css" rel="stylesheet" />
+    <link href="/adnmb/dist/adnmbCSS.css" rel="stylesheet" />
+    <style>
+        /*-- 核心样式 --*/
+        .nmb-side {
+            position: absolute;
+            width: 200px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: 5px 0px 20px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 11;
+            overflow: auto;
+            overflow-Y: auto;
+            overflow-X: hidden;
+        }
+
+        .nmb-foot {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            overflow: hidden;
+            z-index: 11;
+            background-color: #00ab9a;
+        }
+
+        .nmb-content {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 7;
+            overflow: auto;
+            overflow-Y: auto;
+            overflow-X: hidden;
+        }
+
+        .nmb-mask {
+            position: absolute;
+            width: 100%;
+            min-height: 100%;
+            z-index: 10;
+            background-color: rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        /*-- 设置弹出框样式 --*/
+
+        .nmb-msg {
+            z-index: 11;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 100px;
+            margin: auto;
+            width: 200px;
+            height: 100px;
+            background-color: #fff;
+            box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
+            display: none;
+            padding: 5px 0;
+            border-radius: 0px;
+        }
+
+        .nmb-msg-head {
+            padding: 0 10px 5px 10px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        .nmb-msg-content {
+            padding: 5px 10px 0 10px;
+        }
+
+        /*-- 自定义底部样式 --*/
+        .nmb-foot-table {
+            width: 100%;
+            margin-top: 10px;
+            color: white;
+        }
+
+            .nmb-foot-table td {
+                width: 25%;
+                text-align: center;
+            }
+        /*-- 自定义侧边栏样式 --*/
+        .nmb-side-head {
+            font-size: 16px;
+            background-color: #00ab9a;
+            color: #fff;
+            line-height: 50px;
+            height: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            letter-spacing: 3px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .nmb-side-name {
+            text-indent: 10px;
+            border-top: 1px solid #ddd;
+            color: #00ab9a;
+            font-size: 15px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
+        .nmb-side-ul {
+            margin-bottom: 20px;
+        }
+
+            .nmb-side-ul li {
+                display: block;
+                height: 30px;
+                margin: 5px 0;
+            }
+
+            .nmb-side-ul a {
+                display: block;
+                text-indent: 10px;
+                height: 30px;
+                font-size: 14px;
+                line-height: 30px;
+                text-decoration: none;
+                font-style: normal;
+                color: #000;
+            }
+
+                .nmb-side-ul a:hover {
+                    border-left: 15px solid #1ABC9C;
+                    background-color: #1ABC9C;
+                    color: #fff;
+                }
+       
+    </style>
+</head>
+<body>
+    <div class="nmb-wapper">
+        <div class="nmb-side">
+            <div class="nmb-side-head">
+                黎明版-镜像
+            </div>
+            <ul class="nmb-side-ul">
+                <li><a href="http://adnmb.com" target="_blank">传送门</a></li>
+                <li><a href="/adnmb/list.html">时间线</a></li>
+            </ul>
+            <p class="nmb-side-name">版块列表</p>
+            <ul class="nmb-side-ul" id="dynamic_lst">
+                <li><a href="/adnmb/list.html">时间线</a></li>
+            </ul>
+        </div>
+        <div class="nmb-content">
+            <div style="height:3000px; width:100%; ">
+                <ul>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                    <li>内容1</li>
+                </ul>
+            </div>
+        </div>
+        <div class="nmb-mask"></div>
+        <div class="nmb-msg">
+            <div class="nmb-msg-head">提示</div>
+            <div class="nmb-msg-content">aaa</div>
+        </div>
+        <div class="nmb-foot">
+            <table class="nmb-foot-table">
+                <tr>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                    <td>按钮1</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="nmb-helper">
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>↑</p></div>
+            <div class="nmb-helper-td"><p>→</p></div>
+        </div>
+        <div class="nmb-helper-tr">
+            <div class="nmb-helper-td"><p>←</p></div>
+            <div class="nmb-helper-td"><p>↓</p></div>
+        </div>
+    </div>
+    <!-- =================== javascript =================== -->
+    <script src="/dist/js/template-web.js"></script>
+    <script src="/dist/js/moveJS.js"></script>
+    <script src="/adnmb/dist/nmbstyleJS.js"></script>
+    <script src="/adnmb/dist/adnmbJS.js"></script>
+    <script>
+        nmbstyleJS.listen();
+        nmbstyleJS.next(() => { nmbstyleJS.msg("已经滑动到底部", () => { nmbstyleJS.finish(); }); });
+
+        var m = { "modules": [{ "type": "综合", "name": "时间线", "value": "2F662F254536253937254236254539253937254234254537254241254246" }, { "type": "综合", "name": "综合版1", "value": "2F662F25453725424225424325453525393025383825453725383925383831" }, { "type": "综合", "name": "欢乐恶搞", "value": "2F662F254536254143254132254534254239253930254536253831254236254536253930253945" }, { "type": "综合", "name": "推理(脑洞)", "value": "2F662F254536253845254138254537253930253836" }, { "type": "综合", "name": "技术(码农)", "value": "2F662F254536253841253830254536253943254146254535254145253835" }, { "type": "综合", "name": "料理(美食·汪版)", "value": "2F662F254536253936253939254537253930253836" }, { "type": "综合", "name": "喵版(主子)", "value": "2F662F254538254232253933254537253839253838" }, { "type": "综合", "name": "音乐(推歌)", "value": "2F662F254539253946254233254534254239253930" }, { "type": "综合", "name": "学业(校园)", "value": "2F662F254538253830253833254538254146253935" }, { "type": "综合", "name": "社畜New!", "value": "2F662F254537254134254245254537253935253943" }, { "type": "综合", "name": "科学(理学)", "value": "2F662F254537254137253931254535254144254136" }, { "type": "综合", "name": "小说(连载)", "value": "2F662F254535254230253846254538254146254234" }, { "type": "综合", "name": "买买买(剁手)", "value": "2F662F254534254239254230254534254239254230254534254239254230" }, { "type": "综合", "name": "绘画涂鸦(二创)", "value": "2F662F254534254241253843254536254143254131254535253838253942254534254244253943" }, { "type": "综合", "name": "姐妹1(淑女)", "value": "2F662F25453525413725393025453525413625423931" }, { "type": "综合", "name": "LGBT", "value": "2F662F4C474254" }, { "type": "综合", "name": "数码(装机)", "value": "2F662F254536253935254230254537254130253831" }, { "type": "综合", "name": "女装(时尚)", "value": "2F662F254535254135254233254538254133253835" }, { "type": "综合", "name": "日记(树洞)", "value": "2F662F254536253937254135254538254145254230" }, { "type": "综合", "name": "圈内(版务讨论)", "value": "2F662F254535253943253838254535253836253835" }, { "type": "综合", "name": "都市怪谈(灵异)", "value": "2F662F254539253833254244254535254238253832254536253830254141254538254230253838" }, { "type": "综合", "name": "跑团New!", "value": "2F662F254538254237253931254535253942254132" }, { "type": "二次元", "name": "动画", "value": "2F662F254535253841254138254537253934254242" }, { "type": "二次元", "name": "漫画", "value": "2F662F254536254243254142254537253934254242" }, { "type": "二次元", "name": "美漫(小马)", "value": "2F662F254537254245253845254536254243254142" }, { "type": "二次元", "name": "国漫", "value": "2F662F254535253942254244254536254243254142" }, { "type": "二次元", "name": "轻小说", "value": "2F662F254538254244254242254535254230253846254538254146254234" }, { "type": "二次元", "name": "GALGAME", "value": "2F662F47414C47414D45" }, { "type": "二次元", "name": "东方Project", "value": "2F662F25453425423825394325453625393625423950726F6A656374" }, { "type": "二次元", "name": "舰娘", "value": "2F662F254538253838254230254535254138253938" }, { "type": "二次元", "name": "LoveLive", "value": "2F662F4C6F76654C697665" }, { "type": "二次元", "name": "VOCALOID", "value": "2F662F564F43414C4F4944" }, { "type": "二次元", "name": "文学(推书)", "value": "2F662F254536253936253837254535254144254136" }, { "type": "游戏", "name": "游戏综合版", "value": "2F662F254536254238254238254536253838253846" }, { "type": "游戏", "name": "暴雪游戏New!", "value": "2F662F254536253941254234254539253942254141254536254238254238254536253838253846" }, { "type": "游戏", "name": "DNF", "value": "2F662F444E46" }, { "type": "游戏", "name": "手游New!", "value": "2F662F254536253839253842254536254238254238" }, { "type": "游戏", "name": "任天堂NS", "value": "2F662F254534254242254242254535254134254139254535254130253832" }, { "type": "游戏", "name": "Steam", "value": "2F662F537465616D" }, { "type": "游戏", "name": "索尼", "value": "2F662F254537254234254132254535254230254243" }, { "type": "游戏", "name": "LOL", "value": "2F662F4C4F4C" }, { "type": "游戏", "name": "DOTA", "value": "2F662F444F5441" }, { "type": "游戏", "name": "精灵宝可梦", "value": "2F662F254535253846254133254538254132253842254535254136253936254536253830254141" }, { "type": "游戏", "name": "战争雷霆", "value": "2F662F254536253838253938254534254241253839254539253942254237254539253943253836" }, { "type": "游戏", "name": "坦克战机战舰世界", "value": "2F662F574F54" }, { "type": "游戏", "name": "Minecraft", "value": "2F662F4D696E656372616674" }, { "type": "游戏", "name": "怪物猎人", "value": "2F662F254536253830254141254537253839254139254537253843253845254534254241254241" }, { "type": "游戏", "name": "辐射4", "value": "2F662F254538254245253930254535254230253834" }, { "type": "游戏", "name": "卡牌桌游", "value": "2F662F254535253844254131254537253839253843254536254131253843254536254238254238" }, { "type": "游戏", "name": "音乐游戏", "value": "2F662F4D5547" }, { "type": "游戏", "name": "AC大逃杀", "value": "2F662F4143254535254134254137254539253830253833254536253944253830" }, { "type": "2.5次元", "name": "日本偶像(AKB)", "value": "2F662F414B42" }, { "type": "2.5次元", "name": "中国偶像(SNH)", "value": "2F662F534E483438" }, { "type": "2.5次元", "name": "眼科(Cosplay)", "value": "2F662F434F53504C4159" }, { "type": "2.5次元", "name": "声优", "value": "2F662F254535254133254230254534254243253938" }, { "type": "2.5次元", "name": "模型(手办)", "value": "2F662F254536254138254131254535253945253842" }, { "type": "三次元", "name": "电影/电视", "value": "2F662F254535254244254231254538254137253836" }, { "type": "三次元", "name": "军武", "value": "2F662F254535253836253942254536254144254136" }, { "type": "三次元", "name": "体育", "value": "2F662F254534254244253933254538253832254232" }, { "type": "管理", "name": "值班室", "value": "2F662F254535253830254243254537253846254144254535254145254134" }, { "type": "管理", "name": "城墙", "value": "2F662F254535253946253845254535254132253939" }] };
+        var html = "";
+        for (var i = 0; i < m.modules.length; i++) {
+            var item = m.modules[i];
+            html += "<li><a href='/adnmb/list.html?value=" + item.value + "'>" + item.name + "</a></li>";
+        }
+        document.getElementById("dynamic_lst").innerHTML = html;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title>Lozye</title>
+    <link href="/dist/css/unsemantic.min.css" rel="stylesheet" />
+    <link href="/dist/css/lozye.css" rel="stylesheet" />
+    <link href="/dist/css/readerCSS.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="bone-wapper">
+        <div class="bone-head">
+            <div class="grid-container">
+                <div class="grid-20 mobile-grid-30"><a class="my-title" href="http://www.lozye.com">Lozye</a></div>
+                <div class="prefix-40 grid-30 mobile-grid-70 grid-container">
+                    <nav class="my-nav">
+                        <ul>
+                            <li><a href="/view/list.html">列表</a></li>
+                            <li><a href="/view/tool.html">工具</a></li>
+                            <li><a href="/view/gift.html">恩赐</a></li>
+                            <li><a href="/view/death.html">解脱</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="bone-body">
+            <div class="grid-container">
+                <div class="grid-80 mobile-grid-100 my-content">
+                    <div id="listTarget" class="listTarget">
+
+                    </div>
+                    <nav id="listPage" class="m-page" style="display:none; margin:30px 0;">
+                        <a class="pageprv">上一页</a>
+                        <a class="pagenxt">下一页</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="bone-foot">
+            <div class="grid-container" style="height:10px;"></div>
+            <div class="grid-container">
+                <div class="grid-40 mobile-grid-100">
+                    <p id="hitokoto">身处黑夜，心向黎明！</p>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="grid-50 mobile-grid-100">
+                    <ul>
+                        <li>product by <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=B2tofX5iR3Z2KWRoag" target="_blank">@Lozye</a></li>
+                        <li>&nbsp;</li>
+                        <li class="notice">渝ICP备15006581号</li>
+                        <li class="notice">渝公网安备50010302001753号</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="grid-container" style="height:10px;"></div>
+        </div>
+    </div>
+
+    <!-- =================== javascript =================== -->
+    <script src="/dist/js/jquery.min.js"></script>
+    <script src="/dist/js/template-web.js"></script>
+    <script src="/dist/js/bone.js"></script>
+    <script src="/dist/js/readerJS.js?v1.8"></script>
+    <script type="text/html" id="temp_lst">
+        <div class="title">{{name}}</div>
+        <div class="date">&nbsp;</div>
+        <ul style="display:block; min-height:500px;">
+            {{each chapters val i}}
+            <li><a href="page.html?value={{val.target}}">{{val.title}}</a><span>{{val.source}}</span></li>
+            {{/each}}
+        </ul>
+    </script>
+    <script>
+        bone.start();      
+        readerJS.lststart();
+    </script>
+    <script src=""></script>
+</body>
+</html>
