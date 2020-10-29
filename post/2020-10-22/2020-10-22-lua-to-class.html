@@ -12,14 +12,14 @@
 <meta property="og:locale" content="cn_ZH" />
 <meta name="description" content="Lua 定义类，静态类思路NullReferenceException, sorry nil only" />
 <meta property="og:description" content="Lua 定义类，静态类思路NullReferenceException, sorry nil only" />
-<link rel="canonical" href="https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132481673764701009" />
-<meta property="og:url" content="https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132481673764701009" />
+<link rel="canonical" href="https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132484243179996977" />
+<meta property="og:url" content="https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132484243179996977" />
 <meta property="og:site_name" content="Lozye" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-10-22" />
-<script type="application/ld+json">{"headline":"Lua 面向对象","dateModified":"2020-10-26T14:29:36+08:00","datePublished":"2020-10-26T14:29:36+08:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132481673764701009"},"url":"https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132481673764701009","description":"Lua 定义类，静态类思路NullReferenceException, sorry nil only","@context":"https://schema.org"}</script>
+<script type="application/ld+json">{"headline":"Lua 面向对象","dateModified":"2020-10-29T13:51:57+08:00","datePublished":"2020-10-29T13:51:57+08:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132484243179996977"},"url":"https://lozye.github.io/post/2020-10-22/2020-10-22-lua-to-class.html?v=132484243179996977","description":"Lua 定义类，静态类思路NullReferenceException, sorry nil only","@context":"https://schema.org"}</script>
 <!-- End LozyeFramework.WebEngine SEO tag -->
-	<link href="https://lozye.github.io/assets/css/web.all.css?v=132481673764701009" rel="stylesheet" />
+	<link href="https://lozye.github.io/assets/css/web.all.css?v=132484243179996977" rel="stylesheet" />
 
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -33,9 +33,9 @@
 			<div class="x-site-top"></div>
 			<div class="x-site-mid"></div>
 			<div class="x-site-footer">
-				<p class="x-site-title"><a href="https://lozye.github.io/index.html?v=132481673764701009">Lozye</a></p>
+				<p class="x-site-title"><a href="https://lozye.github.io/index.html?v=132484243179996977">Lozye</a></p>
 				<p class="x-site-slogan"><a>身处黑夜，心向黎明！</a></p>
-				<p class="x-site-slogan"><a href="https://lozye.github.io/list.html?v=132481673764701009">全部文章</a></p>
+				<p class="x-site-slogan"><a href="https://lozye.github.io/list.html?v=132484243179996977">全部文章</a></p>
 			</div>
 			<div class="x-site-hidden">
 				<p><a href="http://www.beian.miit.gov.cn/" target="_blank"></a></p>
@@ -157,7 +157,7 @@ map.getotherkeytest=<span class="hljs-number">20</span>;
 <span class="hljs-comment">-- return staic_class_demo</span>
 staic_class_demo.<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;你好&quot;</span>)
 <span class="hljs-comment">-- &lt; staic_class_demo    你好</span></code></pre>
-<p>但是单纯的静态类，肯定不能满足人人都面向对象的你们，so</p>
+<p>接下来，面向<s>对象</s></p>
 <pre><code class="language-lua"><span class="hljs-keyword">local</span> new_obj = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(args)</span></span>
     <span class="hljs-keyword">local</span> map, o, meta = {}, {}, {}
     <span class="hljs-keyword">local</span> list = {}   
@@ -229,17 +229,35 @@ obj2.name=<span class="hljs-string">&quot;test1&quot;</span>;
 </ul>
 <h2 id="0x5-快速定义封装">0x5 快速定义封装</h2>
 <p>了解了以上内容后我们可以封装一个快速定义自有属性的方法 <code>Object.defineProperty</code> 类似 <code>JS</code> 对象的定义属性</p>
-<pre><code class="language-lua"><span class="hljs-keyword">local</span> Object = {_version = <span class="hljs-string">&quot;1.0&quot;</span>}
+<pre><code class="language-lua"><span class="hljs-comment">--</span>
+<span class="hljs-comment">-- Object.lua</span>
+<span class="hljs-comment">--</span>
+<span class="hljs-comment">-- use for defineProperty</span>
+<span class="hljs-comment">--</span>
+<span class="hljs-comment">-- {</span>
+<span class="hljs-comment">--     key = {</span>
+<span class="hljs-comment">--         get = function()</span>
+<span class="hljs-comment">--             --get function</span>
+<span class="hljs-comment">--         end,</span>
+<span class="hljs-comment">--         set = function(value)</span>
+<span class="hljs-comment">--             -- set function</span>
+<span class="hljs-comment">--         end</span>
+<span class="hljs-comment">--     }</span>
+<span class="hljs-comment">-- }</span>
+
+<span class="hljs-keyword">local</span> Object = {_version = <span class="hljs-string">&quot;1.1&quot;</span>}
 <span class="hljs-keyword">do</span>
-    Object.defineProperty = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(map, props)</span></span>      
+    Object.defineProperty = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(map, props)</span></span>
         <span class="hljs-keyword">local</span> o = {}
         <span class="hljs-built_in">setmetatable</span>(map, o)
 
         o.<span class="hljs-built_in">__index</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(t, k)</span></span>
-            <span class="hljs-keyword">if</span> (props[k]) <span class="hljs-keyword">then</span>
-                <span class="hljs-keyword">local</span> fn = props[k].get
-                <span class="hljs-keyword">if</span> (fn) <span class="hljs-keyword">then</span>
-                    <span class="hljs-keyword">return</span> fn()
+            <span class="hljs-keyword">local</span> tar = props[k]
+            <span class="hljs-keyword">if</span> (tar) <span class="hljs-keyword">then</span>
+                <span class="hljs-keyword">if</span> (tar.value) <span class="hljs-keyword">then</span>
+                    <span class="hljs-keyword">return</span> tar.value
+                <span class="hljs-keyword">elseif</span> (tar.get) <span class="hljs-keyword">then</span>
+                    <span class="hljs-keyword">return</span> tar.get()
                 <span class="hljs-keyword">else</span>
                     <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
                 <span class="hljs-keyword">end</span>
@@ -248,10 +266,10 @@ obj2.name=<span class="hljs-string">&quot;test1&quot;</span>;
             <span class="hljs-keyword">end</span>
         <span class="hljs-keyword">end</span>
         o.<span class="hljs-built_in">__newindex</span> = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(t, k, v)</span></span>
-            <span class="hljs-keyword">if</span> (props[k]) <span class="hljs-keyword">then</span>
-                <span class="hljs-keyword">local</span> fn = props[k].set
-                <span class="hljs-keyword">if</span> (fn) <span class="hljs-keyword">then</span>
-                    fn(v)
+            <span class="hljs-keyword">local</span> tar = props[k]
+            <span class="hljs-keyword">if</span> (tar) <span class="hljs-keyword">then</span>
+                <span class="hljs-keyword">if</span> (tar.set) <span class="hljs-keyword">then</span>
+                    tar.set(v)
                 <span class="hljs-keyword">end</span>
             <span class="hljs-keyword">else</span>
                 o[k] = v
@@ -260,7 +278,8 @@ obj2.name=<span class="hljs-string">&quot;test1&quot;</span>;
     <span class="hljs-keyword">end</span>
     <span class="hljs-comment">-- end defineProperty</span>
 <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">return</span> Object </code></pre>
+<span class="hljs-keyword">return</span> Object
+</code></pre>
 <h2 id="0x6-使用方法">0x6 使用方法</h2>
 <pre><code class="language-lua"><span class="hljs-keyword">local</span> new_obj = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(args)</span></span>
     <span class="hljs-keyword">local</span> map, list = {}, {}
@@ -304,7 +323,57 @@ obj3.like=<span class="hljs-string">&quot;is me&quot;</span>
 <span class="hljs-comment">-- &lt; is me</span>
 <span class="hljs-built_in">print</span>(obj3.name)
 <span class="hljs-comment">-- &lt; obj3    is me</span></code></pre>
-<h2 id="0x7-其他扩展">0x7 其他扩展</h2>
+<h2 id="0x7-混合类">0x7 混合类</h2>
+<pre><code class="language-lua"><span class="hljs-keyword">local</span> RSS = {_Verison = <span class="hljs-number">5.3</span>, description = <span class="hljs-string">&quot;类实现&quot;</span>}
+<span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">local</span> Object = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;object&quot;</span>)
+
+    <span class="hljs-keyword">local</span> strlen = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(str)</span></span>
+        <span class="hljs-keyword">return</span> #str
+    <span class="hljs-keyword">end</span>
+
+    RSS.echo = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(...)</span></span>
+        <span class="hljs-keyword">local</span> text = <span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>({...}, <span class="hljs-string">&quot;\t&quot;</span>)
+        <span class="hljs-built_in">print</span>(text)
+    <span class="hljs-keyword">end</span>
+
+    RSS.new = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(name)</span></span>
+        <span class="hljs-keyword">local</span> map = {}
+        <span class="hljs-keyword">local</span> age = <span class="hljs-number">0</span>
+        map.say = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+            RSS.echo(map.name, strlen(map.name), age)
+        <span class="hljs-keyword">end</span>
+        Object.defineProperty(
+            map,
+            {
+                name = {value = name},
+                age = {
+                    get = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>
+                        <span class="hljs-keyword">return</span> age
+                    <span class="hljs-keyword">end</span>,
+                    set = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(v)</span></span>
+                        age = v
+                    <span class="hljs-keyword">end</span>
+                }
+            }
+        )
+        <span class="hljs-keyword">return</span> map
+    <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment">-- return RSS</span>
+<span class="hljs-keyword">local</span> jim = RSS.new(<span class="hljs-string">&quot;jim&quot;</span>)
+jim.name=<span class="hljs-string">&quot;jim2&quot;</span>
+jim.age = <span class="hljs-number">8</span>
+<span class="hljs-keyword">local</span> jerry = RSS.new(<span class="hljs-string">&quot;jerry&quot;</span>)
+jerry.name=<span class="hljs-string">&quot;jerr2&quot;</span>
+jerry.age = <span class="hljs-number">24</span>
+jim.say()
+<span class="hljs-comment">-- &lt; jim    3    8</span>
+jerry.say()
+<span class="hljs-comment">-- &lt; jerry    5    24</span>
+RSS.echo(<span class="hljs-string">&quot;abc&quot;</span>,<span class="hljs-string">&quot;bbc&quot;</span>)
+<span class="hljs-comment">-- &lt; abc    bbc</span></code></pre>
+<h2 id="0x8-其他扩展">0x8 其他扩展</h2>
 <p>扩展一个 <a href="http://music.163.com/song?id=476249281">echo</a> 方法，需要 <code>require(&quot;JSON&quot;)</code> </p>
 <pre><code class="language-lua"><span class="hljs-keyword">local</span> echo = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(...)</span></span>
     <span class="hljs-keyword">local</span> temp = {}
@@ -317,9 +386,9 @@ obj3.like=<span class="hljs-string">&quot;is me&quot;</span>
     <span class="hljs-keyword">end</span>
     <span class="hljs-built_in">print</span>(<span class="hljs-built_in">table</span>.<span class="hljs-built_in">concat</span>(temp, <span class="hljs-string">&quot;\t&quot;</span>))
 <span class="hljs-keyword">end</span></code></pre>
-<h2 id="0x8-总结">0x8 总结</h2>
+<h2 id="0x9-总结">0x9 总结</h2>
 <p>可以发现我们并没有常规方法来实现对象（你可以查阅参考文档来了解怎么使用常规方法定义对象），通过方法来定义对象的好处是整个语法都非常一致，用 <code>.</code> 来访问对象的方法及属性而不是 <code>:</code> ，然后在属性定义上也非常友好，不需要使用到 <code>self</code>，<s>不要去查阅什么是self</s>，以上 <code>lua</code> 面向对象，完毕。</p>
-<h2 id="0x9-参考文档">0x9 参考文档</h2>
+<h2 id="0xa-参考文档">0xA 参考文档</h2>
 <ul>
 <li><a href="https://www.runoob.com/lua/lua-object-oriented.html">常规对象实现方法</a></li>
 <li><a href="http://www.lua.org/manual/5.3/">Lua文档</a></li>
@@ -331,13 +400,13 @@ obj3.like=<span class="hljs-string">&quot;is me&quot;</span>
 							<div class="grid-box x-box-left">
 								<ul>
 									
-									<li><a href="https://lozye.github.io/list.html#lua?v=132481673764701009">lua</a> </li>
+									<li><a href="https://lozye.github.io/list.html#lua?v=132484243179996977">lua</a> </li>
 									
 								</ul>
 								&nbsp;
 							</div>
 							<div class="grid-box x-box-right">
-								<a href="https://lozye.github.io/list.html?v=132481673764701009">BACK</a>
+								<a href="https://lozye.github.io/list.html?v=132484243179996977">BACK</a>
 							</div>
 						</div>
 					</div>
