@@ -22,7 +22,7 @@ nano /etc/shadowsocks-libev/config.json
     "local_port":1080,
     "password":"xxxxxxxxxxx",
     "timeout":60,
-    "method":"aes-256-cfb",
+    "method":"aes-256-gcm",
     "fast_open":true,
 }
 
